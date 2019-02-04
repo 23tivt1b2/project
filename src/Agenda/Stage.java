@@ -1,22 +1,21 @@
 package Agenda;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Stage {
-    private int maxBezoekers;
-    private ArrayList<Performance> performances;
+    private int maxVisitors;
 
-    Stage(ArrayList<Performance> performances, int maxBezoekers) {
-        this.performances = performances;
-        this.maxBezoekers = maxBezoekers;
+    Stage(int maxVisitors) {
+        this.maxVisitors = maxVisitors;
     }
 
-    public void addPerfomance(Performance performance) {
-        this.performances.add(performance);
+    public void addPerfomance(LocalTime beginTime, LocalTime endTime) {
+        Performance performance = new Performance(beginTime, endTime);
     }
 
-    public void setMaxBezoekers(int maxBezoekers) {
-        this.maxBezoekers = maxBezoekers;
+    public void setMaxVisitors(int maxVisitors) {
+        this.maxVisitors = maxVisitors;
     }
 
     public void setPerformances(ArrayList<Performance> performances) {
@@ -24,7 +23,7 @@ public class Stage {
     }
 
     public int getMaxBezoekers() {
-        return maxBezoekers;
+        return maxVisitors;
     }
 
     public ArrayList <Performance> getPerformances() {

@@ -9,15 +9,14 @@ public class Performance {
     private LocalTime beginTime;
     private LocalTime endTime;
 
-    public Performance(ArrayList<Artist> artists, LocalTime beginTime, LocalTime endTime){
-        this.artists = artists;
+    public Performance(LocalTime beginTime, LocalTime endTime) {
         this.beginTime = beginTime;
         this.endTime = endTime;
-
     }
 
-    public void addArtist(Artist artist) {
-        this.artists.add(artist);
+    public void addArtist(String name, double popularity) {
+        this.artists.add(new Artist(name, popularity));
+
     }
 
     public void setArtists(ArrayList<Artist> artists) {
