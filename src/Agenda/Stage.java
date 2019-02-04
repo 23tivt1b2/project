@@ -1,12 +1,15 @@
 package Agenda;
 
-public class Stage {
-    private int maxBezoekers;
+import java.time.LocalTime;
 
-    Stage(int maxBezoekers) {
-        this.maxBezoekers = maxBezoekers;
+public class Stage {
+    private int maxVisitors;
+
+    Stage(int maxVisitors) {
+        this.maxVisitors = maxVisitors;
     }
 
-    public void addPerfomance() {
+    public void addPerfomance(LocalTime beginTime, LocalTime endTime) {
+        Performance performance = new Performance(beginTime, endTime);
     }
 }
