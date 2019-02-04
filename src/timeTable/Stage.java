@@ -1,4 +1,4 @@
-package Agenda;
+package timeTable;
 
 import java.util.ArrayList;
 

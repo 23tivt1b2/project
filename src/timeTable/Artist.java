@@ -1,4 +1,4 @@
-package Agenda;
+package timeTable;
 
 public class Artist {
 
