@@ -19,14 +19,14 @@ public class Stage {
     }
 
     public void setPerformances(ArrayList<Performance> performances) {
-        this.performances = performances;
+    //    this.performances = performances;
     }
 
     public int getMaxBezoekers() {
         return maxVisitors;
     }
 
-    public ArrayList <Performance> getPerformances() {
-        return performances;
-    }
+    //public ArrayList <Performance> getPerformances() {
+//        return performances;
+//    }
 }
