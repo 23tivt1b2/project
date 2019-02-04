@@ -1,4 +1,6 @@
-package Agenda;
+package timeTable;
+
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
