@@ -1,11 +1,3 @@
-import Agenda.Artist;
-import Agenda.Performance;
-import Agenda.Stage;
-import Agenda.Timetable;
-
-import java.time.LocalTime;
-import java.util.ArrayList;
-
 public class Main {
 
     public static void main(String [ ] args) {
