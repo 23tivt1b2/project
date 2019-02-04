@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+    <list default="true" id="a4b22185-5d91-4f45-839d-077a804b0696" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+=======
+<<<<<<< HEAD
     <list default="true" id="699114eb-e1e7-4291-904c-df97ebce4e06" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
 =======
     <list default="true" id="c792b0fc-6d36-46d7-b16d-db35058c6233" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/Agenda/Podium.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Agenda/Podium.java" afterDir="false" />
+>>>>>>> master
 >>>>>>> master
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -51,6 +56,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="63">
+              <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+=======
             <state>
               <caret column="13" selection-start-column="13" selection-end-column="13" />
             </state>
@@ -135,6 +144,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-21">
               <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -159,6 +169,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/src/Main.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="953" />
+=======
         <option value="$PROJECT_DIR$/src/Agenda/Optreden.java" />
         <option value="$PROJECT_DIR$/src/Agenda/Podium.java" />
       </list>
@@ -167,6 +185,7 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="938" />
     <option name="y" value="-17" />
+>>>>>>> master
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -197,7 +216,14 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+<<<<<<< HEAD
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549270575519" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+=======
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549276629385" />
+>>>>>>> master
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -263,6 +289,10 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="63">
+          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+=======
         <state>
           <caret column="13" selection-start-column="13" selection-end-column="13" />
         </state>
@@ -300,6 +330,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-21">
           <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
