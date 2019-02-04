@@ -1,4 +1,4 @@
-package timeTable;
+package data;
 
 public class Agenda {
 }
