@@ -1,5 +1,4 @@
-package Agenda;
+package data;
 
 public class Agenda {
-
 }

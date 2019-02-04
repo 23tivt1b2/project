@@ -1,4 +1,4 @@
-package Agenda;
+package data;
 
 public class Artist {
 

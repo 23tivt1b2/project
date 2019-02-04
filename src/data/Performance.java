@@ -1,4 +1,4 @@
-package Agenda;
+package data;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -9,14 +9,14 @@ public class Performance {
     private LocalTime beginTime;
     private LocalTime endTime;
 
-    public Performance(LocalTime beginTime, LocalTime endTime) {
+    public Performance(ArrayList<Artist> artist,LocalTime beginTime, LocalTime endTime) {
+        this.artists = artist;
         this.beginTime = beginTime;
         this.endTime = endTime;
     }
 
-    public void addArtist(String name, double popularity) {
-        this.artists.add(new Artist(name, popularity));
-
+    public void addArtist(Artist name) {
+       artists.add(name);
     }
 
     public void setArtists(ArrayList<Artist> artists) {
