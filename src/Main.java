@@ -1,7 +1,10 @@
 import data.Artist;
 import data.Performance;
+import data.Stage;
+import gui.MainMenu;
 import timeTable.Timetable;
 
+import java.awt.geom.Area;
 import java.time.LocalTime;
 
 public class Main {
@@ -13,6 +16,7 @@ public class Main {
         Performance performance = new Performance(neffex, time, time );
         Stage stage = new Stage(performance, 200);
         Timetable timetable = new Timetable(stage);
+        gui.MainMenu test = new MainMenu();
     }
 
 }
