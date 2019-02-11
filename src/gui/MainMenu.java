@@ -1,4 +1,4 @@
-package gui;
+package Gui;
 
 import javafx.animation.FillTransition;
 import javafx.application.Application;
@@ -13,8 +13,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-
-import java.awt.event.ActionEvent;
 
 
 public class MainMenu extends Application {
