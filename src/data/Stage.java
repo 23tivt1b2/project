@@ -3,16 +3,16 @@ package data;
 import java.util.ArrayList;
 
 public class Stage {
-    private ArrayList<Performance> performances;
+    private Performance performances;
     private int maxVisitors;
 
-   public Stage(ArrayList<Performance> performances,int maxVisitors) {
+   public Stage(Performance performances,int maxVisitors) {
         this.performances = performances;
         this.maxVisitors = maxVisitors;
     }
 
     public void addPerfomance(Performance performance) {
-        performances.add(performance);
+       // performances.add(performance);
     }
 
     public void setMaxVisitors(int maxVisitors) {
@@ -20,14 +20,14 @@ public class Stage {
     }
 
     public void setPerformances(ArrayList<Performance> performances) {
-        this.performances = performances;
+      //  this.performances = performances;
     }
 
     public int getMaxBezoekers() {
         return maxVisitors;
     }
 
-    public ArrayList<Performance> getPerformances() {
-        return performances;
-    }
+//    public ArrayList<Performance> getPerformances() {
+//      //  return performances;
+//    }
 }
