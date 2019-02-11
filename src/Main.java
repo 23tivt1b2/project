@@ -1,3 +1,9 @@
+import data.Artist;
+import data.Performance;
+import timeTable.Timetable;
+
+import java.time.LocalTime;
+
 public class Main {
 
     public static void main(String [ ] args) {
