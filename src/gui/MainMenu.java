@@ -54,9 +54,9 @@ public class MainMenu extends Application {
 
         Button minimize = new Button();
         Line minimizeGraphic = new Line();
-        minimizeGraphic.setStartX(0.0f);
+        minimizeGraphic.setStartX(2.5f);
         minimizeGraphic.setStartY(7.5f);
-        minimizeGraphic.setEndX(15.0f);
+        minimizeGraphic.setEndX(12.5f);
         minimizeGraphic.setEndY(7.5f);
         minimizeGraphic.setStroke(LIGHT_FILL_1);
         minimize.setGraphic(minimizeGraphic);
@@ -67,24 +67,25 @@ public class MainMenu extends Application {
         Rectangle maximizeIcon = new Rectangle();
         maximizeIcon.setFill(Color.TRANSPARENT);
         maximizeIcon.setStroke(LIGHT_FILL_1);
-        maximizeIcon.setWidth(10);
-        maximizeIcon.setHeight(10);
+        maximizeIcon.setWidth(10.0f);
+        maximizeIcon.setHeight(10.0f);
+
         maximize.setGraphic(maximizeIcon);
         maximize.setMinSize(30,30);
         maximize.getStyleClass().add("button");
 
         StackPane closeGraphic = new StackPane();
         Line x1 = new Line();
-        x1.setStartX(0.0f);
-        x1.setStartY(0.0f);
-        x1.setEndX(15.0f);
-        x1.setEndY(15.0f);
+        x1.setStartX(2.5f);
+        x1.setStartY(2.5f);
+        x1.setEndX(12.5f);
+        x1.setEndY(12.5f);
         x1.setStroke(LIGHT_FILL_1);
         Line x2 = new Line();
-        x2.setStartX(0.0f);
-        x2.setStartY(15.0f);
-        x2.setEndX(15.0f);
-        x2.setEndY(0.0f);
+        x2.setStartX(2.5f);
+        x2.setStartY(12.5f);
+        x2.setEndX(12.5f);
+        x2.setEndY(2.5f);
         x2.setStroke(LIGHT_FILL_1);
         closeGraphic.getChildren().addAll(x1,x2);
         Button close = new Button();
@@ -104,7 +105,6 @@ public class MainMenu extends Application {
         versionLabel.setPadding(new Insets(5,10,0,10));
         versionBox.getChildren().add(versionLabel);
 
-
         StackPane containerRight = new StackPane();
         containerRight.getChildren().addAll(versionBox,controlButtons);
         StackPane.setAlignment(controlButtons,Pos.TOP_RIGHT);
@@ -113,7 +113,6 @@ public class MainMenu extends Application {
 
         container.setLeft(menu());
         root.getChildren().addAll(container);
-
 
         Scene scene = new Scene(root,960, 540);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
