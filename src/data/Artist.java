@@ -1,6 +1,8 @@
-package Agenda;
+package data;
 
-public class Artist {
+import java.io.Serializable;
+
+public class Artist implements Serializable {
 
     private double popularity;
     private String name;
@@ -26,3 +28,4 @@ public class Artist {
         return popularity;
     }
 }
+
