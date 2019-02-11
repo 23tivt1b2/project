@@ -1,10 +1,9 @@
-package timeTable;
+package data;
 
-import javafx.stage.Stage;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Timetable {
+public class Timetable implements Serializable {
 
     private ArrayList<Stage> stages;
 
