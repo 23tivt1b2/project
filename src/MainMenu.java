@@ -1,8 +1,3 @@
-<<<<<<< HEAD:src/gui/MainMenu.java
-package Gui;
-
-=======
->>>>>>> Development:src/MainMenu.java
 import javafx.animation.FillTransition;
 import javafx.application.Application;
 import javafx.geometry.Orientation;
