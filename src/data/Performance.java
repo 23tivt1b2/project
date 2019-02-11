@@ -1,9 +1,10 @@
 package data;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Performance {
+public class Performance implements Serializable {
 
     private Artist artist;
     private LocalTime beginTime;

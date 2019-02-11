@@ -1,9 +1,15 @@
 package data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 public class Stage {
     private Performance performances;
+=======
+public class Stage implements Serializable {
+    private ArrayList<Performance> performances;
+>>>>>>> Development
     private int maxVisitors;
 
    public Stage(Performance performances,int maxVisitors) {
