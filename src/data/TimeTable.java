@@ -1,4 +1,4 @@
 package data;
 
-public class Agenda {
+public class TimeTable {
 }
