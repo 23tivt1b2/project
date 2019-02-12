@@ -9,11 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
 import javafx.stage.Stage;
@@ -39,7 +41,7 @@ public class MainMenu extends Application {
     private Color[] colors = {LIGHT_FILL_1, LIGHT_FILL_2, DARK_FILL_1,DARK_FILL_2};
     private int [] durations = {4500, 5000, 5500, 6000, 6500};
 
-    private boolean isFullscreen=false;
+    private boolean isFullscreen = false;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -53,13 +55,13 @@ public class MainMenu extends Application {
         container.setBackground(background);
 
         Button minimize = new Button();
-        Line minimizeGraphic = new Line();
-        minimizeGraphic.setStartX(2.5f);
-        minimizeGraphic.setStartY(7.5f);
-        minimizeGraphic.setEndX(12.5f);
-        minimizeGraphic.setEndY(7.5f);
-        minimizeGraphic.setStroke(LIGHT_FILL_1);
-        minimize.setGraphic(minimizeGraphic);
+        Line minimizeIcon = new Line();
+        minimizeIcon.setStartX(2.5f);
+        minimizeIcon.setStartY(7.5f);
+        minimizeIcon.setEndX(12.5f);
+        minimizeIcon.setEndY(7.5f);
+        minimizeIcon.setStroke(LIGHT_FILL_1);
+        minimize.setGraphic(minimizeIcon);
         minimize.setMinSize(30,30);
         minimize.getStyleClass().add("button");
 
@@ -70,33 +72,28 @@ public class MainMenu extends Application {
         maximizeIcon.setWidth(10.0f);
         maximizeIcon.setHeight(10.0f);
 
+        SVGPath restoreIcon = new SVGPath();
+        restoreIcon.setContent("m 10 12 h 8 v 8 h -8 v -8 m 2 0 v -2 h 8 v 8 h -2");
+        restoreIcon.setStroke(LIGHT_FILL_1);
+        restoreIcon.setSmooth(false);
+        restoreIcon.setFill(Color.TRANSPARENT);
+
         maximize.setGraphic(maximizeIcon);
         maximize.setMinSize(30,30);
         maximize.getStyleClass().add("button");
 
-        StackPane closeGraphic = new StackPane();
-        Line x1 = new Line();
-        x1.setStartX(2.5f);
-        x1.setStartY(2.5f);
-        x1.setEndX(12.5f);
-        x1.setEndY(12.5f);
-        x1.setStroke(LIGHT_FILL_1);
-        Line x2 = new Line();
-        x2.setStartX(2.5f);
-        x2.setStartY(12.5f);
-        x2.setEndX(12.5f);
-        x2.setEndY(2.5f);
-        x2.setStroke(LIGHT_FILL_1);
-        closeGraphic.getChildren().addAll(x1,x2);
+        SVGPath closeIcon = new SVGPath();
+        closeIcon.setContent("m 11 11 l 9 9 m -9 0 l 9 -9");
+        closeIcon.setStroke(LIGHT_FILL_1);
         Button close = new Button();
-        close.setGraphic(closeGraphic);
+        close.setGraphic(closeIcon);
         close.setMinSize(30,30);
         close.getStyleClass().add("button");
 
         HBox controlButtons = new HBox();
         controlButtons.getChildren().addAll(minimize,maximize,close);
         controlButtons.setAlignment(Pos.TOP_RIGHT);
-        controlButtons.setPadding(new Insets(5,5,5,5));
+
 
         HBox versionBox = new HBox();
         Label versionLabel = new Label("version "+version);
@@ -110,6 +107,7 @@ public class MainMenu extends Application {
         StackPane.setAlignment(controlButtons,Pos.TOP_RIGHT);
         StackPane.setAlignment(versionBox,Pos.BOTTOM_RIGHT);
         container.setRight(containerRight);
+
 
         container.setLeft(menu());
         root.getChildren().addAll(container);
@@ -136,9 +134,11 @@ public class MainMenu extends Application {
                 primaryStage.setMaxHeight(540);
                 primaryStage.setMaximized(false);
                 isFullscreen=false;
+                maximize.setGraphic(maximizeIcon);
             } else {
                 primaryStage.setMaximized(true);
                 isFullscreen=true;
+                maximize.setGraphic(restoreIcon);
             }
         });
         minimize.setOnAction((event -> {
@@ -147,10 +147,7 @@ public class MainMenu extends Application {
         primaryStage.show();
     }
 
-    public StackPane menu() {
-        StackPane menu = new StackPane();
-        FlowPane menuBox = new FlowPane(Orientation.VERTICAL);
-
+    public GridPane menuBackground() {
         GridPane background = new GridPane();
         Random rand = new Random();
         for (int row = 0; row < 18; row++) {
@@ -170,15 +167,18 @@ public class MainMenu extends Application {
                 background.getChildren().addAll(rec);
             }
         }
+        return background;
+    }
 
+    public StackPane menu() {
+        StackPane menu = new StackPane();
+        FlowPane menuBox = new FlowPane(Orientation.VERTICAL);
         StackPane logo = new StackPane();
         HBox logoBox = new HBox();
 
-        Label festival = new Label("festival");
-        festival.getStyleClass().add("festival");
-        Label planner = new Label("planner");
-        planner.getStyleClass().add("planner");
-        logoBox.getChildren().addAll(festival,planner);
+        Image logoImage = new Image("file:/images/logo.png");
+        ImageView logoImageView = new ImageView();
+        logoBox.getChildren().add(logoImageView);
 
         Rectangle logoFill = new Rectangle();
         logoFill.setWidth(240);
@@ -194,8 +194,7 @@ public class MainMenu extends Application {
         map.setMinSize(240,60);
 
         menuBox.getChildren().addAll(logo,timeTable,map);
-
-        menu.getChildren().addAll(background,menuBox);
+        menu.getChildren().addAll(menuBackground(),menuBox);
         return menu;
     }
 

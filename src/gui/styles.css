@@ -1,16 +1,17 @@
 .festival {
     -fx-font-family: "montserrat-thin";
-    -fx-font-size: 20;
+    -fx-font-size: 50;
     -fx-text-fill: white;
 }
 .planner {
     -fx-font-family: "montserrat";
-    -fx-font-size: 20;
+    -fx-font-size: 50;
     -fx-text-fill: white;
 }
 .button {
     -fx-background-color: transparent;
     -fx-cursor: hand;
+    -fx-transition-duration: 0.4s;
 }
 .button:hover {
     -fx-background-color: #D2D2D2;
