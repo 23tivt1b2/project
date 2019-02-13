@@ -1,0 +1,28 @@
+.map-buttons {
+    -fx-font-family: "Montserrat Thin";
+    -fx-font-size: 32;
+    -fx-text-fill: #EBEBEB;
+    -fx-font-smoothing-type: gray;
+}
+.button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+.map-buttons:hover {
+    -fx-text-fill: #940187;
+    -fx-background-color: #EBEBEB;
+}
+.control-buttons:hover {
+    -fx-background-color: #D2D2D2;
+    -fx-background-radius: 0;
+}
+.version {
+    -fx-font-family: "Open Sans";
+    -fx-font-size: 16;
+    -fx-text-fill: #B4B4B4;
+}
+.start-text {
+    -fx-font-family: "OpenSans-Italic";
+    -fx-font-size: 20;
+    -fx-text-fill: #B4B4B4;
+}

@@ -12,19 +12,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontSmoothingType;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-
-import java.awt.event.ActionEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Random;
-
 
 public class MainMenu extends Application {
 
@@ -63,7 +60,7 @@ public class MainMenu extends Application {
         minimizeIcon.setStroke(LIGHT_FILL_1);
         minimize.setGraphic(minimizeIcon);
         minimize.setMinSize(30,30);
-        minimize.getStyleClass().add("button");
+        minimize.getStyleClass().add("control-buttons");
 
         Button maximize = new Button();
         Rectangle maximizeIcon = new Rectangle();
@@ -80,7 +77,7 @@ public class MainMenu extends Application {
 
         maximize.setGraphic(maximizeIcon);
         maximize.setMinSize(30,30);
-        maximize.getStyleClass().add("button");
+        maximize.getStyleClass().add("control-buttons");
 
         SVGPath closeIcon = new SVGPath();
         closeIcon.setContent("m 11 11 l 9 9 m -9 0 l 9 -9");
@@ -88,7 +85,7 @@ public class MainMenu extends Application {
         Button close = new Button();
         close.setGraphic(closeIcon);
         close.setMinSize(30,30);
-        close.getStyleClass().add("button");
+        close.getStyleClass().add("control-buttons");
 
         HBox controlButtons = new HBox();
         controlButtons.getChildren().addAll(minimize,maximize,close);
@@ -106,14 +103,23 @@ public class MainMenu extends Application {
         containerRight.getChildren().addAll(versionBox,controlButtons);
         StackPane.setAlignment(controlButtons,Pos.TOP_RIGHT);
         StackPane.setAlignment(versionBox,Pos.BOTTOM_RIGHT);
-        container.setRight(containerRight);
 
-
+        FlowPane startText = new FlowPane();
+        Text line1 = new Text("press ");
+        Button line2 = new Button("start");
+        line2.setPadding(new Insets(10,0,0,0));
+        line2.setAlignment(Pos.BOTTOM_CENTER);
+        Text line3 = new Text(" to create a new planning.");
+        startText.getChildren().addAll(line1,line2,line3);
+        startText.setAlignment(Pos.CENTER);
+        startText.getStyleClass().add("start-text");
+        container.setCenter(startText);
         container.setLeft(menu());
+        container.setRight(containerRight);
         root.getChildren().addAll(container);
 
         Scene scene = new Scene(root,960, 540);
-        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        scene.getStylesheets().add("css/styles.css");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.initStyle(StageStyle.UNDECORATED);
@@ -170,30 +176,40 @@ public class MainMenu extends Application {
         return background;
     }
 
-    public StackPane menu() {
+    public StackPane menu() throws FileNotFoundException {
         StackPane menu = new StackPane();
         FlowPane menuBox = new FlowPane(Orientation.VERTICAL);
         StackPane logo = new StackPane();
         HBox logoBox = new HBox();
 
-        Image logoImage = new Image("file:/images/logo.png");
-        ImageView logoImageView = new ImageView();
-        logoBox.getChildren().add(logoImageView);
+        Image logoImage = new Image(new FileInputStream("recources/images/logo.png"));
+        ImageView logoImageView = new ImageView(logoImage);
 
         Rectangle logoFill = new Rectangle();
         logoFill.setWidth(240);
-        logoFill.setHeight(120);
+        logoFill.setHeight(150);
         logoFill.setFill(Color.TRANSPARENT);
 
-        logo.getChildren().addAll(logoFill,logoBox);
-        logo.setPadding(new Insets(0,0,30,0));
+        logo.getChildren().addAll(logoFill,logoImageView);
+        logo.setAlignment(Pos.CENTER);
 
-        Button timeTable = new Button("TIMETABLE");
+        Button timeTable = new Button("timetable");
         timeTable.setMinSize(240,60);
-        Button map = new Button("MAP");
+        timeTable.getStyleClass().add("map-buttons");
+        timeTable.setAlignment(Pos.BASELINE_LEFT);
+        timeTable.setPadding(new Insets(0,0,0,30));
+        Button map = new Button("map");
         map.setMinSize(240,60);
+        map.getStyleClass().add("map-buttons");
+        map.setAlignment(Pos.BASELINE_LEFT);
+        map.setPadding(new Insets(0,0,0,27));
+        Button help = new Button("help");
+        help.setMinSize(240,60);
+        help.getStyleClass().add("map-buttons");
+        help.setAlignment(Pos.BASELINE_LEFT);
+        help.setPadding(new Insets(0,0,0,27));
 
-        menuBox.getChildren().addAll(logo,timeTable,map);
+        menuBox.getChildren().addAll(logo,timeTable,map,help);
         menu.getChildren().addAll(menuBackground(),menuBox);
         return menu;
     }
