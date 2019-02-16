@@ -1,5 +1,6 @@
 package gui;
 
+import gui.menu.Menu;
 import javafx.animation.FillTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -23,7 +24,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Random;
 
-public class MainMenu extends Application {
+public class Main extends Application {
 
     private String version = "0.1";
 
@@ -31,25 +32,23 @@ public class MainMenu extends Application {
     private double y = 0;
     
     private Color LIGHT_FILL_1 = Color.rgb(148,1,135);
-    private Color LIGHT_FILL_2 = Color.rgb(148,1,130);
-    private Color DARK_FILL_1 = Color.rgb(138,1,120);
-    private Color DARK_FILL_2 = Color.rgb(138,1,115);
-    private Color OFFWHITE = Color.rgb(235,235,235);
-    private Color[] colors = {LIGHT_FILL_1, LIGHT_FILL_2, DARK_FILL_1,DARK_FILL_2};
-    private int [] durations = {4500, 5000, 5500, 6000, 6500};
+    private Color OFF_WHITE = Color.rgb(235,235,235);
 
     private boolean isFullscreen = false;
+
+    private double stageHeight = 540;
+    private double stageWidth = 960;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.getIcons().add(new Image("images/icon.png"));
 
-        StackPane root = new StackPane();
-        BackgroundFill backgroundFill = new BackgroundFill(OFFWHITE, CornerRadii.EMPTY, Insets.EMPTY);
+
+        BackgroundFill backgroundFill = new BackgroundFill(OFF_WHITE, CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(backgroundFill);
 
-        BorderPane container = new BorderPane();
-        container.setBackground(background);
+        BorderPane root = new BorderPane();
+        root.setBackground(background);
 
         Button minimize = new Button();
         Line minimizeIcon = new Line();
@@ -99,8 +98,8 @@ public class MainMenu extends Application {
         versionLabel.setPadding(new Insets(5,10,0,10));
         versionBox.getChildren().add(versionLabel);
 
-        StackPane containerRight = new StackPane();
-        containerRight.getChildren().addAll(versionBox,controlButtons);
+        StackPane rootRight = new StackPane();
+        rootRight.getChildren().addAll(versionBox,controlButtons);
         StackPane.setAlignment(controlButtons,Pos.TOP_RIGHT);
         StackPane.setAlignment(versionBox,Pos.BOTTOM_RIGHT);
 
@@ -113,15 +112,15 @@ public class MainMenu extends Application {
         startText.getChildren().addAll(line1,line2,line3);
         startText.setAlignment(Pos.CENTER);
         startText.getStyleClass().add("start-text");
-        container.setCenter(startText);
-        container.setLeft(menu());
-        container.setRight(containerRight);
-        root.getChildren().addAll(container);
 
-        Scene scene = new Scene(root,960, 540);
-        scene.getStylesheets().add("css/styles.css");
+        root.setCenter(startText);
+        Menu menu = new Menu();
+        root.setLeft(menu.menu(stageHeight));
+        root.setRight(rootRight);
+
+        Scene scene = new Scene(root,stageWidth, stageHeight);
+        scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         scene.setOnMousePressed(mouseEvent -> {
             x = primaryStage.getX() - mouseEvent.getScreenX();
@@ -136,15 +135,18 @@ public class MainMenu extends Application {
         });
         maximize.setOnAction(event -> {
             if (isFullscreen) {
-                primaryStage.setMaxWidth(960);
-                primaryStage.setMaxHeight(540);
+                primaryStage.setMaxWidth(stageWidth);
+                primaryStage.setMaxHeight(stageHeight);
                 primaryStage.setMaximized(false);
                 isFullscreen=false;
                 maximize.setGraphic(maximizeIcon);
+                menu.setFullscreen(stageHeight);
             } else {
                 primaryStage.setMaximized(true);
                 isFullscreen=true;
                 maximize.setGraphic(restoreIcon);
+                stageHeight = primaryStage.getHeight();
+                menu.setFullscreen(stageHeight);
             }
         });
         minimize.setOnAction((event -> {
@@ -153,68 +155,7 @@ public class MainMenu extends Application {
         primaryStage.show();
     }
 
-    public GridPane menuBackground() {
-        GridPane background = new GridPane();
-        Random rand = new Random();
-        for (int row = 0; row < 18; row++) {
-            for (int col = 0; col < 8; col++) {
-                int color1 = rand.nextInt(4);
-                int color2 = rand.nextInt(4);
-                int duration = rand.nextInt(5);
-                Rectangle rec = new Rectangle();
-                rec.setWidth(30);
-                rec.setHeight(30);
-                FillTransition ft = new FillTransition(Duration.millis(durations[duration]), rec, colors[color1], colors[color2]);
-                ft.setCycleCount(6000);
-                ft.setAutoReverse(true);
-                ft.play();
-                GridPane.setRowIndex(rec, row);
-                GridPane.setColumnIndex(rec, col);
-                background.getChildren().addAll(rec);
-            }
-        }
-        return background;
-    }
-
-    public StackPane menu() throws FileNotFoundException {
-        StackPane menu = new StackPane();
-        FlowPane menuBox = new FlowPane(Orientation.VERTICAL);
-        StackPane logo = new StackPane();
-        HBox logoBox = new HBox();
-
-        Image logoImage = new Image(new FileInputStream("recources/images/logo.png"));
-        ImageView logoImageView = new ImageView(logoImage);
-
-        Rectangle logoFill = new Rectangle();
-        logoFill.setWidth(240);
-        logoFill.setHeight(150);
-        logoFill.setFill(Color.TRANSPARENT);
-
-        logo.getChildren().addAll(logoFill,logoImageView);
-        logo.setAlignment(Pos.CENTER);
-
-        Button timeTable = new Button("timetable");
-        timeTable.setMinSize(240,60);
-        timeTable.getStyleClass().add("map-buttons");
-        timeTable.setAlignment(Pos.BASELINE_LEFT);
-        timeTable.setPadding(new Insets(0,0,0,30));
-        Button map = new Button("map");
-        map.setMinSize(240,60);
-        map.getStyleClass().add("map-buttons");
-        map.setAlignment(Pos.BASELINE_LEFT);
-        map.setPadding(new Insets(0,0,0,27));
-        Button help = new Button("help");
-        help.setMinSize(240,60);
-        help.getStyleClass().add("map-buttons");
-        help.setAlignment(Pos.BASELINE_LEFT);
-        help.setPadding(new Insets(0,0,0,27));
-
-        menuBox.getChildren().addAll(logo,timeTable,map,help);
-        menu.getChildren().addAll(menuBackground(),menuBox);
-        return menu;
-    }
-
     public static void main(String[] args) {
-        launch(MainMenu.class);
+        launch(Main.class);
     }
 }

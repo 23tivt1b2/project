@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Open Sans Light";
+    src: url("/fonts/OpenSans-Light.ttf");
+}
 .map-buttons {
     -fx-font-family: "Montserrat Thin";
     -fx-font-size: 32;
@@ -22,7 +26,7 @@
     -fx-text-fill: #B4B4B4;
 }
 .start-text {
-    -fx-font-family: "OpenSans-Italic";
-    -fx-font-size: 20;
+    -fx-font-family: "Open Sans Light";
+    -fx-font-size: 40;
     -fx-text-fill: #B4B4B4;
 }
