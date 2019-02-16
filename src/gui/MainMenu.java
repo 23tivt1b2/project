@@ -1,6 +1,6 @@
 package gui;
 
-import gui.Agenda.Timetable;
+import gui.agenda.Timetable;
 import javafx.animation.FillTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;

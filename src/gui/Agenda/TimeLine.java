@@ -1,13 +1,8 @@
-package gui.Agenda;
+package gui.agenda;
 
-import data.Performance;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-import java.awt.*;
 
 public class TimeLine {
 

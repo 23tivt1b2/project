@@ -1,4 +1,4 @@
-package gui.Agenda;
+package gui.agenda;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -7,8 +7,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.sql.BatchUpdateException;
 
 public class StageBox {
 
@@ -74,7 +72,7 @@ public class StageBox {
             temporary2.setMaxSize(90, 30);
             this.stageBox.getChildren().add(temporary2);
             this.primaryStage.close();
-            gui.Agenda.TimeLine temporary3 = new TimeLine(temporary, this.timeLines);
+            gui.agenda.TimeLine temporary3 = new TimeLine(temporary, this.timeLines);
         });
 
         top.getChildren().add(this.addArtist);
