@@ -4,45 +4,29 @@ import data.Performance;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.awt.*;
 
-public class Agenda {
+public class TimeLine {
 
-    private GridPane agenda;
+    private HBox timeLine;
 
-    public void createAgenda(BorderPane secondaryBorderPane, data.Timetable timetable) {
-        this.agenda = new GridPane();
+    TimeLine(data.Stage stage, VBox vBox) {
+        this.timeLine = new HBox();
 
-        secondaryBorderPane.setCenter(this.agenda);
-
-        int j = 1;
-        for (int i = 0; i < 24; i++) {
+        for(int i = 1; i < 25; i++) {
             Button temporary = new Button();
-            temporary.setMinSize(60, 30);
-            temporary.setMaxSize(60, 30);
             temporary.setDisable(true);
-            temporary.setOpacity(0.2);
-            this.agenda.add(temporary, i, 0);
+            temporary.setOpacity(0.5);
+            temporary.setMinSize(60, 30);
+            this.timeLine.getChildren().add(temporary);
         }
-        for (data.Stage stage : timetable.getStages()) {
-            Button temporary = new Button();
-            for (int i = 0; i < 25; i++) {
-                this.agenda.add(temporary, i, j);
-            }
-            j++;
-        }
+        vBox.getChildren().add(this.timeLine);
     }
 
-    public void addStage(data.Timetable timetable) {
-        int j = timetable.getSize();
-        for (int i = 0; i < 24; i++) {
-            Button temporary = new Button();
+    public void update() {
 
-            temporary.setMinSize(60, 30);
-            temporary.setMaxSize(60, 30);
-            temporary.setOpacity(0.5);
-            this.agenda.add(temporary, i, j);
-        }
     }
 }

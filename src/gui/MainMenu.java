@@ -1,3 +1,6 @@
+package gui;
+
+import gui.Agenda.Timetable;
 import javafx.animation.FillTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -9,15 +12,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontSmoothingType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import java.awt.event.ActionEvent;
+
 import java.util.Random;
 
 
@@ -34,7 +34,7 @@ public class MainMenu extends Application {
     private Color DARK_FILL_2 = Color.rgb(138,1,115);
     private Color OFFWHITE = Color.rgb(235,235,235);
     private Color[] colors = {LIGHT_FILL_1, LIGHT_FILL_2, DARK_FILL_1,DARK_FILL_2};
-    private int [] durations = {4500, 5000, 5500, 6000, 6500};
+    private int [] durations = {400, 500, 550, 600, 650};
 
     private boolean isFullscreen=false;
 
@@ -187,13 +187,26 @@ public class MainMenu extends Application {
 
         Button timeTable = new Button("TIMETABLE");
         timeTable.setMinSize(240,60);
+        Timetable createTimetable = new Timetable();
         Button map = new Button("MAP");
         map.setMinSize(240,60);
+
+        timeTable.setOnAction(event -> {
+            try {
+                createTimetable.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         menuBox.getChildren().addAll(logo,timeTable,map);
 
         menu.getChildren().addAll(background,menuBox);
         return menu;
+    }
+
+    public MainMenu() {
+
     }
 
     public static void main(String[] args) {
