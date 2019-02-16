@@ -17,13 +17,9 @@ import javafx.scene.text.FontSmoothingType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-
-<<<<<<< HEAD:src/MainMenu.java
-=======
 import java.awt.event.ActionEvent;
 import java.util.Random;
 
->>>>>>> Arshiya:src/gui/MainMenu.java
 
 public class MainMenu extends Application {
 

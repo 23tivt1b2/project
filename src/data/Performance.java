@@ -16,13 +16,19 @@ public class Performance implements Serializable {
         this.endTime = endTime;
     }
 
-    public void addArtist(Artist name) {
-//       artist.add(name);
+    public Performance(Artist artist,LocalTime beginTime) {
+        this.artist = artist;
+        this.beginTime = beginTime;
+        this.endTime = beginTime.plusHours(1);
     }
 
-//    public void setArtists(ArrayList<Artist> artists) {
-//        this.artist = artists;
-//    }
+    public void setArtist(Artist name) {
+       this.artist = name;
+    }
+
+    public Artist getArtist() {
+        return this.artist;
+    }
 
     public void setBeginTime(LocalTime beginTime) {
         this.beginTime = beginTime;
@@ -31,10 +37,6 @@ public class Performance implements Serializable {
     public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
-
-//    public ArrayList<Artist> getArtists() {
-//        return artists;
-//    }
 
     public LocalTime getBeginTime() {
         return beginTime;
