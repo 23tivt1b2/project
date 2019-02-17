@@ -45,4 +45,9 @@ public class Performance implements Serializable {
     public LocalTime getEndTime() {
         return endTime;
     }
+
+    @Override
+    public String toString() {
+        return this.artist.toString();
+    }
 }

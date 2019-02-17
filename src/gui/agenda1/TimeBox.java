@@ -1,4 +1,4 @@
-package gui.agenda;
+package gui.agenda1;
 
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -12,6 +12,7 @@ public class TimeBox {
 
     public void createTimeBox(BorderPane secondaryBorderPane) {
         this.topLeftIndicator = new TextField("stage / time");
+        this.topLeftIndicator.setDisable(true);
         this.topLeftIndicator.setMinSize(90, 30);
 
         this.timeBox = new HBox();

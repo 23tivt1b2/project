@@ -1,5 +1,7 @@
 package data;
 
+import gui.agenda1.StageBox;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -13,8 +15,9 @@ public class Timetable implements Serializable {
         this.artists = new ArrayList<>();
     }
 
-    public void addStage(Stage stage) {
+    public void addStage(Stage stage, StageBox stageBox) {
         this.stages.add(stage);
+        stageBox.update(this);
     }
 
     public void setStages(ArrayList<Stage> stages) {
@@ -39,5 +42,9 @@ public class Timetable implements Serializable {
 
     public int getSize() {
         return this.stages.size();
+    }
+
+    public void updateTimeTableInterface(StageBox stageBox) {
+        stageBox.update(this);
     }
 }

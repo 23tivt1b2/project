@@ -1,11 +1,14 @@
-package gui.agenda;
+package gui.agenda1;
 
+import data.Performance;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 
 public class Timetable {
@@ -56,7 +59,16 @@ public class Timetable {
         this.top = new HBox();
 
         createArtistSelector();
+        createAddStage();
         createsecondaryBorderPane();
+    }
+
+    public void createsecondaryBorderPane() {
+        this.secondaryBorderPane = new BorderPane();
+        this.primaryBorderPane.setCenter(this.secondaryBorderPane);
+
+        this.stageBox.createStageBox(this.secondaryBorderPane, this.timetable);
+        this.timeBox.createTimeBox(this.secondaryBorderPane);
     }
 
     public void createArtistSelector() {
@@ -71,9 +83,8 @@ public class Timetable {
             confirm.setOnMouseClicked(event1 -> {
                 data.Artist temporary = new data.Artist(artsitName.getText(), Integer.valueOf(artistPop.getText()));
                 this.timetable.addArtist(temporary);
-                System.out.println(this.timetable.getArtists());
-                System.out.println(this.timetable.getStages());
                 this.secondaryStage.close();
+                print();
             });
             confirm.setMinSize(90, 30);
 
@@ -91,17 +102,51 @@ public class Timetable {
         });
         this.addArtist.setMinSize(105, 30);
         this.addArtist.setMaxSize(105, 30);
-        this.primaryBorderPane.setTop(this.top);
         this.top.getChildren().add(this.addArtist);
+        this.primaryBorderPane.setTop(this.top);
     }
 
-    public void createsecondaryBorderPane() {
-        this.secondaryBorderPane = new BorderPane();
-        this.primaryBorderPane.setCenter(this.secondaryBorderPane);
+    public void createAddStage() {
+        this.addArtist = new Button("add stage");
+        this.addArtist.setOnMouseClicked(event -> {
 
-        this.stageBox.createStageBox(this.secondaryBorderPane, this.timetable);
-        this.stageBox.createAddArtistButton(this.timetable, this.top);
-        this.timeBox.createTimeBox(this.secondaryBorderPane);
+            TextField stageName = new TextField("stage name");
+            stageName.setMinSize(90, 30);
+            TextField maxVisitors = new TextField("stage max size");
+            maxVisitors.setMinSize(90, 30);
+            Button confirm = new Button("confirm");
+            confirm.setOnMouseClicked(event1 -> {
+                data.Stage temporary = new data.Stage(Integer.valueOf(maxVisitors.getText()), stageName.getText());
+                this.timetable.addStage(temporary, this.stageBox);
+                this.secondaryStage.close();
+                print();
+            });
+            confirm.setMinSize(90, 30);
+
+            this.secondaryScene = new Scene(this.thirdBorderPane = new BorderPane());
+            this.secondaryStage = new Stage();
+
+            this.thirdBorderPane.setTop(stageName);
+            this.thirdBorderPane.setCenter(maxVisitors);
+            this.thirdBorderPane.setBottom(confirm);
+
+            this.secondaryStage.setScene(this.secondaryScene);
+            this.secondaryStage.setX(event.getX());
+            this.secondaryStage.setY(event.getY());
+            this.secondaryStage.show();
+        });
+        this.addArtist.setMinSize(105, 30);
+        this.addArtist.setMaxSize(105, 30);
+        this.top.getChildren().add(this.addArtist);
+        this.primaryBorderPane.setTop(this.top);
+    }
+
+    public void print() {
+        System.out.println(this.timetable.getArtists());
+        System.out.println(this.timetable.getStages());
+        for (data.Stage stage : this.timetable.getStages()) {
+            System.out.println(stage.getPerformances());
+        }
     }
 
 }

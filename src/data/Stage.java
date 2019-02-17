@@ -1,5 +1,8 @@
 package data;
 
+import gui.agenda1.TimeLine;
+import javafx.scene.layout.VBox;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -21,7 +24,7 @@ public class Stage implements Serializable {
        this.performances = new ArrayList<>();
     }
 
-    public void addPerfomance(Performance performance) {
+    public void addPerfomance(Performance performance, TimeLine timeLine) {
         this.performances.add(performance);
     }
 
