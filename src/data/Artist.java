@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class Artist implements Serializable {
 
-    private double popularity;
+    private int popularity;
     private String name;
 
-    public Artist(String name, double popularity) {
+    public Artist(String name, int popularity) {
         this.name = name;
         this.popularity = popularity;
     }
@@ -24,8 +24,13 @@ public class Artist implements Serializable {
         return name;
     }
 
-    public double getPopularity() {
+    public int getPopularity() {
         return popularity;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }
 
