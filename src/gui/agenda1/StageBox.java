@@ -37,6 +37,8 @@ public class StageBox {
             });
             this.stageBox.getChildren().add(temporary);
         }
+
+        this.timeLine.update(timetable);
     }
 
     public void stageOptionMenu(data.Stage stage, data.Timetable timetable, double x, double y) {
@@ -49,6 +51,7 @@ public class StageBox {
         delete.setMaxSize(120, 30);
         delete.setOnMouseClicked(event -> {
             deleteStage(stage, timetable);
+            this.timeLine.update(timetable);
             stageOptionMenuStage.close();
         });
         Button addPerformance = new Button("add performance");

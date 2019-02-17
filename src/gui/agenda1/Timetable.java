@@ -4,6 +4,7 @@ import data.Performance;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -26,11 +27,15 @@ public class Timetable {
     private Scene secondaryScene;
 
     private Button addArtist;
+    private Button saveTimeTable;
+    private Button loadTimeTable;
 
     private gui.agenda1.StageBox stageBox;
     private gui.agenda1.TimeBox timeBox;
 
     private HBox top;
+
+    private Serializer serializer;
 
 
     public void start() throws Exception {
@@ -39,6 +44,7 @@ public class Timetable {
         this.timeBox = new gui.agenda1.TimeBox();
 
         this.timetable = new data.Timetable();
+        this.serializer = new Serializer();
 
         createPrimaryBorderPane();
 
@@ -61,6 +67,8 @@ public class Timetable {
         createArtistSelector();
         createAddStage();
         createsecondaryBorderPane();
+        createSaveOption();
+        loadSave();
     }
 
     public void createsecondaryBorderPane() {
@@ -139,6 +147,66 @@ public class Timetable {
         this.addArtist.setMaxSize(105, 30);
         this.top.getChildren().add(this.addArtist);
         this.primaryBorderPane.setTop(this.top);
+    }
+
+    public void createSaveOption() {
+        this.saveTimeTable = new Button("Save TimeTable");
+        this.saveTimeTable.setOnMouseClicked(event -> {
+
+            TextField stageName = new TextField("TimeTable name");
+            stageName.setMinSize(90, 30);
+            Button confirm = new Button("confirm");
+            confirm.setOnMouseClicked(event1 -> {
+                serializer.setTimeTable(this.timetable);
+                serializer.serializeTimeTable(stageName.getText());
+            });
+            confirm.setMinSize(90, 30);
+
+            BorderPane borderPaneSave = new BorderPane();
+            this.secondaryScene = new Scene(borderPaneSave);
+            this.secondaryStage = new Stage();
+
+            borderPaneSave.setTop(stageName);
+            borderPaneSave.setBottom(confirm);
+
+            this.secondaryStage.setScene(this.secondaryScene);
+            this.secondaryStage.setX(event.getX());
+            this.secondaryStage.setY(event.getY());
+            this.secondaryStage.show();
+        });
+
+        this.top.getChildren().add(this.saveTimeTable);
+    }
+
+    public void loadSave() {
+        this.loadTimeTable = new Button("Load file");
+        this.loadTimeTable.setOnMouseClicked(event -> {
+            TextField loadFile = new TextField("File name");
+
+            loadFile.setMinSize(90, 30);Button confirm = new Button("confirm");
+            confirm.setOnMouseClicked(event1 -> {
+                data.Timetable timetableTemp = this.serializer.deserializeTimeTable(loadFile.getText());
+                if(timetableTemp != null) {
+                    this.timetable = timetableTemp;
+                    this.timetable.updateTimeTableInterface(stageBox);
+                }
+            });
+            confirm.setMinSize(90, 30);
+
+            BorderPane borderPaneSave = new BorderPane();
+            this.secondaryScene = new Scene(borderPaneSave);
+            this.secondaryStage = new Stage();
+
+            borderPaneSave.setTop(loadFile);
+            borderPaneSave.setBottom(confirm);
+
+            this.secondaryStage.setScene(this.secondaryScene);
+            this.secondaryStage.setX(event.getX());
+            this.secondaryStage.setY(event.getY());
+            this.secondaryStage.show();
+        });
+
+        this.top.getChildren().add(this.loadTimeTable);
     }
 
     public void print() {
