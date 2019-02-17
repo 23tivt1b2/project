@@ -27,16 +27,16 @@ public class Timetable {
 
     private Button addArtist;
 
-    private StageBox stageBox;
-    private TimeBox timeBox;
+    private gui.agenda1.StageBox stageBox;
+    private gui.agenda1.TimeBox timeBox;
 
     private HBox top;
 
 
     public void start() throws Exception {
 
-        this.stageBox = new StageBox();
-        this.timeBox = new TimeBox();
+        this.stageBox = new gui.agenda1.StageBox();
+        this.timeBox = new gui.agenda1.TimeBox();
 
         this.timetable = new data.Timetable();
 

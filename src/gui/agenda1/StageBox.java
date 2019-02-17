@@ -87,7 +87,6 @@ public class StageBox {
         setMaxVisitors.setMaxSize(120, 30);
         setMaxVisitors.setOnKeyTyped(event -> {
             setMaxVisitors.setText("");
-            stageOptionMenuStage.close();
         });
         Button confirm = new Button("confirm");
         confirm.setOnMouseClicked(event -> {
