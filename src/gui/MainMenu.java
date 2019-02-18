@@ -114,7 +114,7 @@ public class MainMenu extends Application {
         root.getChildren().addAll(container);
 
         Scene scene = new Scene(root,960, 540);
-        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.initStyle(StageStyle.UNDECORATED);
