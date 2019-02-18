@@ -35,7 +35,7 @@ public class TimeLine {
                 temporary2.setMinSize(60, 30);
                 temporary2.setMaxSize(60, 30);
                 for(Performance performance : stage.getPerformances()) {
-                    if (performance.getBeginTime().getHour() <= i && performance.getEndTime().getHour() >= i) {
+                    if (performance.getBeginTime().getHour() <= i && performance.getEndTime().getHour() > i) {
                         temporary2.setText(performance.toString());
                         temporary2.setOpacity(1);
                     }

@@ -22,7 +22,12 @@ public class TimeBox {
         this.timeBox.getChildren().add(this.topLeftIndicator);
 
         for(int k = 1; k < 25; k++) {
-            TextField time = new TextField(k + ":00");
+            TextField time = new TextField();
+            if(k == 24) {
+                time.setText("00" + ":00");
+            } else {
+                time.setText(k + ":00");
+            }
             time.setDisable(true);
             time.setOpacity(1);
             time.setMinSize(60, 30);
