@@ -26,6 +26,12 @@
     -fx-font-size: 30;
     -fx-text-fill: #0F0F0F;
 }
+.start-button {
+    -fx-text-fill: #940187;
+}
+.start-button:hover {
+    -fx-text-fill: #B4B4B4;
+}
 .time {
     -fx-font-family: "Montserrat";
     -fx-font-size: 10;

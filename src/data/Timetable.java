@@ -1,6 +1,7 @@
 package data;
 
-import gui.agenda1.StageBox;
+
+import gui.pages.timetable.StageBox;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package gui;
 
 import gui.menu.Menu;
-import gui.pages.Main;
+import gui.pages.Intro;
 import gui.pages.timetable.Timetable;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -18,11 +18,9 @@ import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.FileNotFoundException;
-
 public class Root extends Application {
 
-    private String version = "0.1";
+    private String version = "0.2";
 
     private double x = 0;
     private double y = 0;
@@ -40,9 +38,9 @@ public class Root extends Application {
     private BorderPane container = new BorderPane();
     private Menu menu = new Menu();
     private Timetable timetable = new Timetable();
-    private Main main = new Main();
+    private Intro main = new Intro();
 
-    public void setMenuButtons() {
+    public void setButtons() {
         menu.addButton("timetable",30);
         menu.getButton(0).setOnAction(event -> {
             try {
@@ -60,6 +58,13 @@ public class Root extends Application {
             }
         });
         menu.addButton("help",27);
+        main.getStartbutton().setOnAction(event -> {
+            try {
+                container.setCenter(timetable.start());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override
@@ -130,7 +135,7 @@ public class Root extends Application {
         versionLabel.setPadding(new Insets(5,10,0,10));
         versionBox.getChildren().add(versionLabel);
 
-        setMenuButtons();
+        setButtons();
 
         root.setLeft(this.menu.menu(stageHeight));
         container.setCenter(main.start());
@@ -160,60 +165,5 @@ public class Root extends Application {
             primaryStage.setIconified(true);
         }));
         primaryStage.show();
-    }
-
-    public StackPane rightItems() {
-        Button minimize = new Button();
-        Line minimizeIcon = new Line();
-        minimizeIcon.setStartX(2.5f);
-        minimizeIcon.setStartY(7.5f);
-        minimizeIcon.setEndX(12.5f);
-        minimizeIcon.setEndY(7.5f);
-        minimizeIcon.setStroke(LIGHT_FILL_1);
-        minimize.setGraphic(minimizeIcon);
-        minimize.setMinSize(30,30);
-        minimize.getStyleClass().add("control-buttons");
-
-        Button maximize = new Button();
-        Rectangle maximizeIcon = new Rectangle();
-        maximizeIcon.setFill(Color.TRANSPARENT);
-        maximizeIcon.setStroke(LIGHT_FILL_1);
-        maximizeIcon.setWidth(10.0f);
-        maximizeIcon.setHeight(10.0f);
-
-        SVGPath restoreIcon = new SVGPath();
-        restoreIcon.setContent("m 10 12 h 8 v 8 h -8 v -8 m 2 0 v -2 h 8 v 8 h -2");
-        restoreIcon.setStroke(LIGHT_FILL_1);
-        restoreIcon.setSmooth(false);
-        restoreIcon.setFill(Color.TRANSPARENT);
-
-        maximize.setGraphic(maximizeIcon);
-        maximize.setMinSize(30,30);
-        maximize.getStyleClass().add("control-buttons");
-
-        SVGPath closeIcon = new SVGPath();
-        closeIcon.setContent("m 11 11 l 9 9 m -9 0 l 9 -9");
-        closeIcon.setStroke(LIGHT_FILL_1);
-        Button close = new Button();
-        close.setGraphic(closeIcon);
-        close.setMinSize(30,30);
-        close.getStyleClass().add("control-buttons");
-
-        HBox controlButtons = new HBox();
-        controlButtons.getChildren().addAll(minimize,maximize,close);
-        controlButtons.setAlignment(Pos.TOP_RIGHT);
-
-        HBox versionBox = new HBox();
-        Label versionLabel = new Label("version "+version);
-        versionLabel.getStyleClass().add("version");
-        versionBox.setAlignment(Pos.BOTTOM_RIGHT);
-        versionLabel.setPadding(new Insets(5,10,0,10));
-        versionBox.getChildren().add(versionLabel);
-
-        StackPane rootRight = new StackPane();
-        rootRight.getChildren().addAll(versionBox,controlButtons);
-        StackPane.setAlignment(controlButtons,Pos.TOP_RIGHT);
-        StackPane.setAlignment(versionBox,Pos.BOTTOM_RIGHT);
-        return rootRight;
     }
 }

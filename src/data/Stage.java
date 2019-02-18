@@ -1,6 +1,6 @@
 package data;
 
-import gui.agenda1.TimeLine;
+import gui.pages.timetable.Timeline;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,7 +23,8 @@ public class Stage implements Serializable {
        this.performances = new ArrayList<>();
     }
 
-    public void addPerfomance(Performance performance, TimeLine timeLine) {
+    public void addPerfomance(Performance performance, Timeline timeLine) {
+
         this.performances.add(performance);
     }
 

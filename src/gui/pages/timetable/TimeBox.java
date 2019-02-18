@@ -28,7 +28,7 @@ public class TimeBox {
             time.getStyleClass().add("time");
             time.setDisable(true);
             time.setOpacity(1);
-            time.setMinSize(60, 30);
+            time.setMinSize(120, 30);
             time.setPadding(new Insets(0,0,0,0));
             this.timeBox.getChildren().add(time);
         }
