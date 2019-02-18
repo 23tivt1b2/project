@@ -1,26 +1,33 @@
 package data;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Performance {
+public class Performance implements Serializable {
 
-    private ArrayList<Artist> artists;
+    private Artist artist;
     private LocalTime beginTime;
     private LocalTime endTime;
 
-    public Performance(ArrayList<Artist> artist,LocalTime beginTime, LocalTime endTime) {
-        this.artists = artist;
+    public Performance(Artist artist,LocalTime beginTime, LocalTime endTime) {
+        this.artist = artist;
         this.beginTime = beginTime;
         this.endTime = endTime;
     }
 
-    public void addArtist(Artist name) {
-       artists.add(name);
+    public Performance(Artist artist,LocalTime beginTime) {
+        this.artist = artist;
+        this.beginTime = beginTime;
+        this.endTime = beginTime.plusHours(1);
     }
 
-    public void setArtists(ArrayList<Artist> artists) {
-        this.artists = artists;
+    public void setArtist(Artist name) {
+       this.artist = name;
+    }
+
+    public Artist getArtist() {
+        return this.artist;
     }
 
     public void setBeginTime(LocalTime beginTime) {
@@ -29,10 +36,6 @@ public class Performance {
 
     public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
-    }
-
-    public ArrayList<Artist> getArtists() {
-        return artists;
     }
 
     public LocalTime getBeginTime() {

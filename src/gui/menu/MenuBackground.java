@@ -14,7 +14,7 @@ public class MenuBackground {
     private Color DARK_FILL_1 = Color.rgb(138,1,120);
     private Color DARK_FILL_2 = Color.rgb(138,1,115);
     private Color[] colors = {LIGHT_FILL_1, LIGHT_FILL_2, DARK_FILL_1,DARK_FILL_2};
-    private int [] durations = {4500, 5000, 5500, 6000, 6500};
+    private int [] durations = {3500, 4000, 4500, 5000, 5500};
 
     private GridPane background = new GridPane();
     private Random rand = new Random();

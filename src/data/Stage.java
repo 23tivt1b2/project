@@ -1,18 +1,28 @@
 package data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Stage {
+public class Stage implements Serializable {
     private ArrayList<Performance> performances;
-    private int maxVisitors;
 
-   public Stage(ArrayList<Performance> performances,int maxVisitors) {
-        this.performances = performances;
+    private int maxVisitors;
+    private String stageName;
+
+   public Stage(int maxVisitors, String name) {
         this.maxVisitors = maxVisitors;
+        this.stageName = name;
+        this.performances = new ArrayList<>();
+    }
+
+    public Stage(ArrayList<Performance> performances, int maxVisitors) {
+       this.maxVisitors = 0;
+       this.stageName = "";
+       this.performances = new ArrayList<>();
     }
 
     public void addPerfomance(Performance performance) {
-        performances.add(performance);
+        this.performances.add(performance);
     }
 
     public void setMaxVisitors(int maxVisitors) {
@@ -24,10 +34,23 @@ public class Stage {
     }
 
     public int getMaxBezoekers() {
-        return maxVisitors;
+        return this.maxVisitors;
+    }
+
+    public String getStageName() {
+       return this.stageName;
+    }
+
+    public void setStageName(String stageName) {
+       this.stageName = stageName;
     }
 
     public ArrayList<Performance> getPerformances() {
-        return performances;
+        return this.performances;
+    }
+
+    @Override
+    public String toString() {
+       return this.stageName;
     }
 }
