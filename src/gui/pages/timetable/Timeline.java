@@ -18,6 +18,7 @@ public class Timeline {
         borderPane.setCenter(this.timeline);
         update(timetable);
     }
+
     public void update(data.Timetable timetable) {
         this.timeline.getChildren().clear();
         for (data.Stage stage : timetable.getStages()) {
