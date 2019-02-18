@@ -148,6 +148,11 @@ public class Timetable {
                     + "-fx-background-insets: 0;");
 
             this.secondaryStage.setOpacity(0.9);
+            this.secondaryStage.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+                if (! isNowFocused) {
+                    this.secondaryStage.hide();
+                }
+            });
 
             this.secondaryScene.setFill(Color.TRANSPARENT);
             this.secondaryStage.initStyle(StageStyle.TRANSPARENT);
@@ -224,6 +229,11 @@ public class Timetable {
                             + "-fx-background-insets: 0;");
 
             this.secondaryStage.setOpacity(0.9);
+            this.secondaryStage.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+                if (! isNowFocused) {
+                    this.secondaryStage.hide();
+                }
+            });
 
             this.secondaryScene.setFill(Color.TRANSPARENT);
             this.secondaryStage.initStyle(StageStyle.TRANSPARENT);

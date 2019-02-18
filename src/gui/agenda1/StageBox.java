@@ -138,6 +138,11 @@ public class StageBox {
 
         stageOptionMenuStage.setTitle("Add artist");
         stageOptionMenuStage.setOpacity(0.9);
+        stageOptionMenuStage.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+            if (! isNowFocused) {
+                stageOptionMenuStage.hide();
+            }
+        });
 
         sceneOptionMenuScene.setFill(Color.TRANSPARENT);
         stageOptionMenuStage.initStyle(StageStyle.TRANSPARENT);
