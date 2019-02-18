@@ -1,13 +1,18 @@
 package gui.agenda1;
 
 import data.Performance;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.ArrayList;
 
@@ -19,6 +24,8 @@ public class Timetable {
     private BorderPane primaryBorderPane;
     private BorderPane secondaryBorderPane;
     private BorderPane thirdBorderPane;
+
+    private GridPane gridPane;
 
     private Stage primaryStage;
     private Stage secondaryStage;
@@ -83,31 +90,73 @@ public class Timetable {
         this.addArtist = new Button("add artist");
         this.addArtist.setOnMouseClicked(event -> {
 
-            TextField artsitName = new TextField("artist's name");
-            artsitName.setMinSize(90, 30);
-            TextField artistPop = new TextField("artist's popularity");
-            artistPop.setMinSize(90, 30);
-            Button confirm = new Button("confirm");
-            confirm.setOnMouseClicked(event1 -> {
-                data.Artist temporary = new data.Artist(artsitName.getText(), Integer.valueOf(artistPop.getText()));
+            Label nameArtist = new Label("Name: ");
+            nameArtist.setTextFill(Color.BLACK);
+            TextField setArtist = new TextField();
+
+
+            Label popularityArtist = new Label("Popularity: ");
+            popularityArtist.setTextFill(Color.BLACK);
+            TextField setPopularity = new TextField();
+
+            Button save = new Button("Save");
+            save.setStyle("-fx-background-color: white");
+            save.setOnAction(event1 -> {
+                data.Artist temporary = new data.Artist(setArtist.getText(), Integer.valueOf(setPopularity.getText()));
                 this.timetable.addArtist(temporary);
                 this.secondaryStage.close();
                 print();
             });
-            confirm.setMinSize(90, 30);
+            Button clear = new Button("Clear");
+            clear.setStyle("-fx-background-color: white");
+            clear.setOnAction(event1 -> {
+                setArtist.clear();
+                setPopularity.clear();
+            });
+            Button exit = new Button("Exit");
+            exit.setStyle("-fx-background-color: white");
+            exit.setOnAction(event1 -> {
+               this.secondaryStage.close();
+            });
 
-            this.secondaryScene = new Scene(this.thirdBorderPane = new BorderPane());
+            HBox buttons = new HBox();
+            buttons.setSpacing(10);
+            buttons.getChildren().addAll(save, clear, exit);
+
+            this.secondaryScene = new Scene(this.gridPane = new GridPane(), 300, 130);
+            this.secondaryStage.setOpacity(0.9);
+
+            this.secondaryScene.setFill(Color.TRANSPARENT);
             this.secondaryStage = new Stage();
 
-            this.thirdBorderPane.setTop(artsitName);
-            this.thirdBorderPane.setCenter(artistPop);
-            this.thirdBorderPane.setBottom(confirm);
 
+            this.gridPane.setHgap(10);
+            this.gridPane.setVgap(12);
+            this.gridPane.add(nameArtist, 0, 1);
+            this.gridPane.add(setArtist, 1, 1);
+            this.gridPane.add(popularityArtist, 0, 2);
+            this.gridPane.add(setPopularity, 1, 2);
+            this.gridPane.add(buttons, 0 ,3, 3, 1);
+
+            this.secondaryStage.setFullScreen(false);
+            this.secondaryStage.setResizable(false);
+            this.gridPane.setAlignment(Pos.BASELINE_CENTER);
+
+            this.gridPane.setStyle(
+                    "-fx-background-color: violet;"
+                    + "-fx-background-radius: 8, 4;"
+                    + "-fx-background-insets: 0;");
+
+            this.secondaryStage.setOpacity(0.9);
+
+            this.secondaryScene.setFill(Color.TRANSPARENT);
+            this.secondaryStage.initStyle(StageStyle.TRANSPARENT);
             this.secondaryStage.setScene(this.secondaryScene);
-            this.secondaryStage.setX(event.getX());
-            this.secondaryStage.setY(event.getY());
             this.secondaryStage.show();
+
         });
+
+
         this.addArtist.setMinSize(105, 30);
         this.addArtist.setMaxSize(105, 30);
         this.top.getChildren().add(this.addArtist);
@@ -118,30 +167,69 @@ public class Timetable {
         this.addArtist = new Button("add stage");
         this.addArtist.setOnMouseClicked(event -> {
 
-            TextField stageName = new TextField("stage name");
-            stageName.setMinSize(90, 30);
-            TextField maxVisitors = new TextField("stage max size");
-            maxVisitors.setMinSize(90, 30);
-            Button confirm = new Button("confirm");
-            confirm.setOnMouseClicked(event1 -> {
-                data.Stage temporary = new data.Stage(Integer.valueOf(maxVisitors.getText()), stageName.getText());
+            Label nameArtist = new Label("Name: ");
+            nameArtist.setTextFill(Color.BLACK);
+            TextField setStage = new TextField();
+
+            Label popularityArtist = new Label("Capacity: ");
+            popularityArtist.setTextFill(Color.BLACK);
+            TextField setCapacity = new TextField();
+
+            Button save = new Button("Save");
+            save.setStyle("-fx-background-color: white");
+            save.setOnAction(event1 -> {
+                data.Stage temporary = new data.Stage(Integer.valueOf(setCapacity.getText()), setStage.getText());
                 this.timetable.addStage(temporary, this.stageBox);
                 this.secondaryStage.close();
                 print();
             });
-            confirm.setMinSize(90, 30);
+            Button clear = new Button("Clear");
+            clear.setStyle("-fx-background-color: white");
+            clear.setOnAction(event1 -> {
+                setStage.clear();
+                setCapacity.clear();
+            });
+            Button exit = new Button("Exit");
+            exit.setStyle("-fx-background-color: white");
+            exit.setOnAction(event1 -> {
+                this.secondaryStage.close();
+            });
 
-            this.secondaryScene = new Scene(this.thirdBorderPane = new BorderPane());
+            HBox buttons = new HBox();
+            buttons.setSpacing(10);
+            buttons.getChildren().addAll(save, clear, exit);
+
+            this.secondaryScene = new Scene(this.gridPane = new GridPane(), 300, 130);
+            this.secondaryStage.setOpacity(0.9);
+
+            this.secondaryScene.setFill(Color.TRANSPARENT);
             this.secondaryStage = new Stage();
 
-            this.thirdBorderPane.setTop(stageName);
-            this.thirdBorderPane.setCenter(maxVisitors);
-            this.thirdBorderPane.setBottom(confirm);
 
+            this.gridPane.setHgap(10);
+            this.gridPane.setVgap(12);
+            this.gridPane.add(nameArtist, 0, 1);
+            this.gridPane.add(setStage, 1, 1);
+            this.gridPane.add(popularityArtist, 0, 2);
+            this.gridPane.add(setCapacity, 1, 2);
+            this.gridPane.add(buttons, 0 ,3, 3, 1);
+
+            this.secondaryStage.setFullScreen(false);
+            this.secondaryStage.setResizable(false);
+            this.gridPane.setAlignment(Pos.BASELINE_CENTER);
+
+            this.gridPane.setStyle(
+                    "-fx-background-color: violet;"
+                            + "-fx-background-radius: 8, 4;"
+                            + "-fx-background-insets: 0;");
+
+            this.secondaryStage.setOpacity(0.9);
+
+            this.secondaryScene.setFill(Color.TRANSPARENT);
+            this.secondaryStage.initStyle(StageStyle.TRANSPARENT);
             this.secondaryStage.setScene(this.secondaryScene);
-            this.secondaryStage.setX(event.getX());
-            this.secondaryStage.setY(event.getY());
             this.secondaryStage.show();
+
         });
         this.addArtist.setMinSize(105, 30);
         this.addArtist.setMaxSize(105, 30);
