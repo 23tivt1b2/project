@@ -2,14 +2,19 @@ package gui.agenda1;
 
 import data.Artist;
 import data.Performance;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.time.LocalTime;
 
@@ -42,101 +47,83 @@ public class StageBox {
     }
 
     public void stageOptionMenu(data.Stage stage, data.Timetable timetable, double x, double y) {
-        VBox stageOptionMenu = new VBox();
-        Scene stageOptionMenuScene = new Scene(stageOptionMenu);
+        GridPane grid = new GridPane();
+        Scene sceneOptionMenuScene = new Scene(grid, 330, 200);
         Stage stageOptionMenuStage = new Stage();
 
-        Button delete = new Button("delete");
-        delete.setMinSize(120, 30);
-        delete.setMaxSize(120, 30);
-        delete.setOnMouseClicked(event -> {
-            deleteStage(stage, timetable);
-            this.timeLine.update(timetable);
-            stageOptionMenuStage.close();
+        Label maxVisitors = new Label("Set max visitors: ");
+        maxVisitors.setTextFill(Color.BLACK);
+        TextField setmaxVisitors = new TextField();
+        Button accept = new Button("save");
+        accept.setOnAction(event -> {
+            stage.setMaxVisitors(Integer.valueOf(setmaxVisitors.getText()));
+            setmaxVisitors.clear();
         });
-        Button addPerformance = new Button("add performance");
-        addPerformance.setMinSize(120, 30);
-        addPerformance.setMaxSize(120, 30);
-        addPerformance.setOnMouseClicked(event -> {
-            addPerformance(stage, event.getX(), event.getY(), timetable);
-        });
-        Button setMaxVisitors = new Button("set max visitor's");
-        setMaxVisitors.setMinSize(120, 30);
-        setMaxVisitors.setMaxSize(120, 30);
-        setMaxVisitors.setOnMouseClicked(event -> {
-            setMaxVisitors(stage, event.getX(), event.getY(), timetable);
-            stageOptionMenuStage.close();
-        });
-
-        stageOptionMenu.getChildren().addAll(delete, addPerformance, setMaxVisitors);
-
-        stageOptionMenuStage.setX(x);
-        stageOptionMenuStage.setY(y);
-        stageOptionMenuStage.setScene(stageOptionMenuScene);
-        stageOptionMenuStage.show();
-    }
-
-    public void deleteStage(data.Stage stage, data.Timetable timetable) {
-                timetable.getStages().remove(stage);
-                timetable.updateTimeTableInterface(this);
-    }
-
-    public void setMaxVisitors(data.Stage stage, double x, double y, data.Timetable timetable) {
-        VBox setMaxVisitorsMenu = new VBox();
-        Scene stageOptionMenuScene = new Scene(setMaxVisitorsMenu);
-        Stage stageOptionMenuStage = new Stage();
-        TextField setMaxVisitors = new TextField("max visitor's");
-        setMaxVisitors.setMinSize(120, 30);
-        setMaxVisitors.setMaxSize(120, 30);
-        setMaxVisitors.setOnKeyTyped(event -> {
-            setMaxVisitors.setText("");
-        });
-        Button confirm = new Button("confirm");
-        confirm.setOnMouseClicked(event -> {
-            stage.setMaxVisitors(Integer.valueOf(setMaxVisitors.getText()));
-            stageOptionMenuStage.close();
-        });
-
-        setMaxVisitorsMenu.getChildren().addAll(setMaxVisitors, confirm);
-
-        stageOptionMenuStage.setX(x);
-        stageOptionMenuStage.setY(y);
-        stageOptionMenuStage.setScene(stageOptionMenuScene);
-        stageOptionMenuStage.show();
-    }
-
-    public void addPerformance(data.Stage stage, double x, double y, data.Timetable timetable) {
-        VBox stageOptionMenu = new VBox();
-        Scene stageOptionMenuScene = new Scene(stageOptionMenu);
-        Stage stageOptionMenuStage = new Stage();
-
-        ComboBox<Artist> artistSelector = new ComboBox<>();
-        artistSelector.setMinSize(120, 30);
-        artistSelector.setMaxSize(120, 30);
+        Label addPerformance = new Label("Add performance: ");
+        ComboBox<Artist> artistComboBox = new ComboBox<>();
         for (Artist artist : timetable.getArtists()) {
-            artistSelector.getItems().add(artist);
+            artistComboBox.getItems().add(artist);
         }
 
-        TextField performanceBeginTime = new TextField("begin time");
-        performanceBeginTime.setMinSize(120, 30);
-        performanceBeginTime.setMaxSize(120, 30);
+        Label setTime = new Label("Select time");
+        ComboBox<LocalTime> beginTime = new ComboBox<>();
+        ComboBox<LocalTime> endTime = new ComboBox<>();
+        HBox comboBox = new HBox();
+        comboBox.setSpacing(10);
+        comboBox.getChildren().addAll(beginTime, endTime);
 
-        TextField performanceEndTime = new TextField("end time");
-        performanceEndTime.setMinSize(120, 30);
-        performanceEndTime.setMaxSize(120, 30);
+        Button acceptPerformance = new Button();
+        acceptPerformance.setStyle(
+                "-fx-background-radius: 5em; " +
+                        "-fx-min-width: 15px; " +
+                        "-fx-min-height: 15px; " +
+                        "-fx-max-width: 15px; " +
+                        "-fx-max-height: 15px;"
+        );
 
-        Button confirm = new Button("confirm");
-        confirm.setOnMouseClicked(event -> {
-            stage.addPerfomance(new Performance(artistSelector.getValue(), LocalTime.parse(performanceBeginTime.getText()), LocalTime.parse(performanceEndTime.getText())), this.timeLine);
+        Button delete = new Button("Delete");
+        delete.setOnAction(event ->  {
+            timetable.getStages().remove(stage);
+            timetable.updateTimeTableInterface(this);
             stageOptionMenuStage.close();
-            this.timeLine.update(timetable);
         });
+        Button save = new Button("Save");
+        Button clear = new Button("Clear");
+        Button exit = new Button("Exit");
+        exit.setOnAction(event -> {
+            stageOptionMenuStage.close();
+        });
+        HBox buttons = new HBox();
+        buttons.setSpacing(10);
+        buttons.getChildren().addAll(save, clear, delete, exit);
 
-        stageOptionMenu.getChildren().addAll(artistSelector, performanceBeginTime, performanceEndTime, confirm);
+        grid.setHgap(10);
+        grid.setVgap(12);
+        grid.add(maxVisitors, 0, 1);
+        grid.add(setmaxVisitors, 1, 1);
+        grid.add(accept, 2, 1);
+        grid.add(addPerformance, 0, 2);
+        grid.add(artistComboBox, 1, 2);
+        grid.add(setTime, 0, 3);
+        grid.add(comboBox, 1, 3);
+        grid.add(buttons, 0, 4, 4, 1);
 
-        stageOptionMenuStage.setX(x);
-        stageOptionMenuStage.setY(y);
-        stageOptionMenuStage.setScene(stageOptionMenuScene);
+
+        stageOptionMenuStage.setFullScreen(false);
+        stageOptionMenuStage.setResizable(false);
+        grid.setAlignment(Pos.BASELINE_CENTER);
+        grid.setStyle(
+                "-fx-background-color: violet;"
+                        + "-fx-background-radius: 8, 4;"
+                        + "-fx-background-insets: 0;");
+
+
+        stageOptionMenuStage.setTitle("Add artist");
+        stageOptionMenuStage.setOpacity(0.9);
+
+        sceneOptionMenuScene.setFill(Color.TRANSPARENT);
+        stageOptionMenuStage.initStyle(StageStyle.TRANSPARENT);
+        stageOptionMenuStage.setScene(sceneOptionMenuScene);
         stageOptionMenuStage.show();
     }
 }
