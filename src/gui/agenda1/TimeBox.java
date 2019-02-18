@@ -1,18 +1,25 @@
 package gui.agenda1;
 
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 
 public class TimeBox {
 
     private HBox timeBox;
 
-    private TextField topLeftIndicator;
+    private Label topLeftIndicator;
 
     public void createTimeBox(BorderPane secondaryBorderPane) {
-        this.topLeftIndicator = new TextField("stage / time");
-        this.topLeftIndicator.setDisable(true);
+        this.topLeftIndicator = new Label("  Stage/time");
+        this.topLeftIndicator.setStyle("-fx-border-color: black");
         this.topLeftIndicator.setMinSize(90, 30);
 
         this.timeBox = new HBox();
@@ -22,19 +29,20 @@ public class TimeBox {
         this.timeBox.getChildren().add(this.topLeftIndicator);
 
         for(int k = 1; k < 25; k++) {
-            TextField time = new TextField();
+            Label time = new Label();
             if(k == 24) {
                 time.setText("00" + ":00");
             } else {
                 time.setText(k + ":00");
             }
-            time.setDisable(true);
+            time.setStyle("-fx-right-border-color: black");
             time.setOpacity(1);
             time.setMinSize(60, 30);
-            this.timeBox.getChildren().add(time);
+            this.timeBox.getChildren().addAll(time);
         }
 
         secondaryBorderPane.setTop(this.timeBox);
+
     }
 
     public void update(data.Timetable timetable) {

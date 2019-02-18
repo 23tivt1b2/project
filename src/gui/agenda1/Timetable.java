@@ -34,6 +34,7 @@ public class Timetable {
     private Scene secondaryScene;
 
     private Button addArtist;
+    private Button addStage;
     private Button saveTimeTable;
     private Button loadTimeTable;
 
@@ -43,6 +44,11 @@ public class Timetable {
     private HBox top;
 
     private Serializer serializer;
+
+    private final String IDLE_BUTTON_STYLE = "-fx-border-color: #8E9FBB;" +
+            " -fx-border-width: 3px;"
+            + "-fx-background-color: #8E9FBB";
+    private final String HOVERED_BUTTON_STYLE = "-fx-background-color: transparent;";
 
 
     public void start() throws Exception {
@@ -88,6 +94,9 @@ public class Timetable {
 
     public void createArtistSelector() {
         this.addArtist = new Button("add artist");
+        this.addArtist.setStyle(this.IDLE_BUTTON_STYLE);
+        this.addArtist.setOnMouseEntered(e -> this.addArtist.setStyle(this.HOVERED_BUTTON_STYLE));
+        this.addArtist.setOnMouseExited(e -> this.addArtist .setStyle(this.IDLE_BUTTON_STYLE));
         this.addArtist.setOnMouseClicked(event -> {
 
             Label nameArtist = new Label("Name: ");
@@ -102,10 +111,15 @@ public class Timetable {
             Button save = new Button("Save");
             save.setStyle("-fx-background-color: white");
             save.setOnAction(event1 -> {
-                data.Artist temporary = new data.Artist(setArtist.getText(), Integer.valueOf(setPopularity.getText()));
-                this.timetable.addArtist(temporary);
-                this.secondaryStage.close();
-                print();
+                if (!this.timetable.getArtistsName().contains(setArtist.getText())) {
+                    data.Artist temporary = new data.Artist(setArtist.getText(), Integer.valueOf(setPopularity.getText()));
+                    this.timetable.addArtist(temporary);
+                    this.secondaryStage.close();
+                    print();
+                } else {
+                    setArtist.clear();
+                    setArtist.setPromptText("artist already exists");
+                }
             });
             Button clear = new Button("Clear");
             clear.setStyle("-fx-background-color: white");
@@ -143,7 +157,7 @@ public class Timetable {
             this.gridPane.setAlignment(Pos.BASELINE_CENTER);
 
             this.gridPane.setStyle(
-                    "-fx-background-color: violet;"
+                    "-fx-background-color: CACFE2;"
                     + "-fx-background-radius: 8, 4;"
                     + "-fx-background-insets: 0;");
 
@@ -162,15 +176,18 @@ public class Timetable {
         });
 
 
-        this.addArtist.setMinSize(105, 30);
-        this.addArtist.setMaxSize(105, 30);
+        this.addArtist.setMinSize(125, 60);
+        this.addArtist.setMaxSize(125, 60);
         this.top.getChildren().add(this.addArtist);
         this.primaryBorderPane.setTop(this.top);
     }
 
     public void createAddStage() {
-        this.addArtist = new Button("add stage");
-        this.addArtist.setOnMouseClicked(event -> {
+        this.addStage = new Button("add stage");
+        this.addStage.setStyle(IDLE_BUTTON_STYLE);
+        this.addStage.setOnMouseEntered(e -> this.addStage.setStyle(this.HOVERED_BUTTON_STYLE));
+        this.addStage.setOnMouseExited(e -> this.addStage.setStyle(this.IDLE_BUTTON_STYLE));
+        this.addStage.setOnMouseClicked(event -> {
 
             Label nameArtist = new Label("Name: ");
             nameArtist.setTextFill(Color.BLACK);
@@ -183,10 +200,15 @@ public class Timetable {
             Button save = new Button("Save");
             save.setStyle("-fx-background-color: white");
             save.setOnAction(event1 -> {
-                data.Stage temporary = new data.Stage(Integer.valueOf(setCapacity.getText()), setStage.getText());
-                this.timetable.addStage(temporary, this.stageBox);
-                this.secondaryStage.close();
-                print();
+                if (!this.timetable.getStageNames().contains(setStage.getText())) {
+                    data.Stage temporary = new data.Stage(Integer.valueOf(setCapacity.getText()), setStage.getText());
+                    this.timetable.addStage(temporary, this.stageBox);
+                    this.secondaryStage.close();
+                    print();
+                } else {
+                    setStage.clear();
+                    setStage.setPromptText("Stage already exists");
+                }
             });
             Button clear = new Button("Clear");
             clear.setStyle("-fx-background-color: white");
@@ -224,7 +246,7 @@ public class Timetable {
             this.gridPane.setAlignment(Pos.BASELINE_CENTER);
 
             this.gridPane.setStyle(
-                    "-fx-background-color: violet;"
+                    "-fx-background-color: CACFE2;"
                             + "-fx-background-radius: 8, 4;"
                             + "-fx-background-insets: 0;");
 
@@ -241,14 +263,17 @@ public class Timetable {
             this.secondaryStage.show();
 
         });
-        this.addArtist.setMinSize(105, 30);
-        this.addArtist.setMaxSize(105, 30);
-        this.top.getChildren().add(this.addArtist);
+        this.addStage.setMinSize(125, 60);
+        this.addStage.setMaxSize(125, 60);
+        this.top.getChildren().add(this.addStage);
         this.primaryBorderPane.setTop(this.top);
     }
 
     public void createSaveOption() {
         this.saveTimeTable = new Button("Save TimeTable");
+        this.saveTimeTable.setStyle(IDLE_BUTTON_STYLE);
+        this.saveTimeTable.setOnMouseEntered(e -> this.saveTimeTable.setStyle(this.HOVERED_BUTTON_STYLE));
+        this.saveTimeTable.setOnMouseExited(e -> this.saveTimeTable.setStyle(this.IDLE_BUTTON_STYLE));
         this.saveTimeTable.setOnMouseClicked(event -> {
 
             TextField stageName = new TextField("TimeTable name");
@@ -273,11 +298,16 @@ public class Timetable {
             this.secondaryStage.show();
         });
 
+        this.saveTimeTable.setMinSize(125, 60);
+        this.saveTimeTable.setMaxSize(125, 60);
         this.top.getChildren().add(this.saveTimeTable);
     }
 
     public void loadSave() {
         this.loadTimeTable = new Button("Load file");
+        this.loadTimeTable.setStyle(IDLE_BUTTON_STYLE);
+        this.loadTimeTable.setOnMouseEntered(e -> this.loadTimeTable.setStyle(this.HOVERED_BUTTON_STYLE));
+        this.loadTimeTable.setOnMouseExited(e -> this.loadTimeTable.setStyle(this.IDLE_BUTTON_STYLE));
         this.loadTimeTable.setOnMouseClicked(event -> {
             TextField loadFile = new TextField("File name");
 
@@ -304,6 +334,8 @@ public class Timetable {
             this.secondaryStage.show();
         });
 
+        this.loadTimeTable.setMinSize(125, 60);
+        this.loadTimeTable.setMaxSize(125, 60);
         this.top.getChildren().add(this.loadTimeTable);
     }
 

@@ -106,14 +106,13 @@ public class StageBox {
             this.timeLine.update(timetable);
             stageOptionMenuStage.close();
         });
-        Button clear = new Button("Clear");
         Button exit = new Button("Exit");
         exit.setOnAction(event -> {
             stageOptionMenuStage.close();
         });
         HBox buttons = new HBox();
         buttons.setSpacing(10);
-        buttons.getChildren().addAll(save, clear, delete, exit);
+        buttons.getChildren().addAll(save, delete, exit);
 
         grid.setHgap(10);
         grid.setVgap(12);
@@ -131,7 +130,7 @@ public class StageBox {
         stageOptionMenuStage.setResizable(false);
         grid.setAlignment(Pos.BASELINE_CENTER);
         grid.setStyle(
-                "-fx-background-color: violet;"
+                "-fx-background-color: CACFE2;"
                         + "-fx-background-radius: 8, 4;"
                         + "-fx-background-insets: 0;");
 
