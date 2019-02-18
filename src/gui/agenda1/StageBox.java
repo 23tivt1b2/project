@@ -2,6 +2,8 @@ package gui.agenda1;
 
 import data.Artist;
 import data.Performance;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class StageBox {
 
@@ -66,8 +69,18 @@ public class StageBox {
         }
 
         Label setTime = new Label("Select time");
-        ComboBox<LocalTime> beginTime = new ComboBox<>();
-        ComboBox<LocalTime> endTime = new ComboBox<>();
+        ComboBox<String> beginTime = new ComboBox<>();
+        ComboBox<String> endTime = new ComboBox<>();
+        ArrayList<String> time = new ArrayList<>();
+        for (int i = 1; i < 25; i++) {
+            StringBuilder creater = new StringBuilder(i + ":00");
+            if (creater.length() < 5) {
+                creater.insert(0, "0");
+            }
+            time.add(creater.toString());
+        }
+        beginTime.setItems(FXCollections.observableList(time));
+        endTime.setItems(FXCollections.observableList(time));
         HBox comboBox = new HBox();
         comboBox.setSpacing(10);
         comboBox.getChildren().addAll(beginTime, endTime);
@@ -88,6 +101,11 @@ public class StageBox {
             stageOptionMenuStage.close();
         });
         Button save = new Button("Save");
+        save.setOnAction(event -> {
+            stage.addPerfomance(new Performance(artistComboBox.getValue(), LocalTime.parse(beginTime.getValue()), LocalTime.parse(endTime.getValue())), this.timeLine);
+            this.timeLine.update(timetable);
+            stageOptionMenuStage.close();
+        });
         Button clear = new Button("Clear");
         Button exit = new Button("Exit");
         exit.setOnAction(event -> {
