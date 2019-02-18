@@ -118,7 +118,7 @@ public class Timetable {
                     print();
                 } else {
                     setArtist.clear();
-                    setArtist.setPromptText("artist already exists");
+                    setArtist.setPromptText("//artist already exists");
                 }
             });
             Button clear = new Button("Clear");
@@ -207,7 +207,7 @@ public class Timetable {
                     print();
                 } else {
                     setStage.clear();
-                    setStage.setPromptText("Stage already exists");
+                    setStage.setPromptText("//Stage already exists");
                 }
             });
             Button clear = new Button("Clear");
@@ -276,25 +276,50 @@ public class Timetable {
         this.saveTimeTable.setOnMouseExited(e -> this.saveTimeTable.setStyle(this.IDLE_BUTTON_STYLE));
         this.saveTimeTable.setOnMouseClicked(event -> {
 
-            TextField stageName = new TextField("TimeTable name");
+            TextField stageName = new TextField();
+            stageName.clear();
+            stageName.setPromptText("//Name time table");
             stageName.setMinSize(90, 30);
             Button confirm = new Button("confirm");
             confirm.setOnMouseClicked(event1 -> {
-                serializer.setTimeTable(this.timetable);
-                serializer.serializeTimeTable(stageName.getText());
+                if (stageName.getText().length() > 0) {
+                    serializer.setTimeTable(this.timetable);
+                    serializer.serializeTimeTable(stageName.getText());
+                    this.secondaryStage.close();
+                } else {
+                    stageName.setPromptText("//name necessary");
+                }
             });
             confirm.setMinSize(90, 30);
 
-            BorderPane borderPaneSave = new BorderPane();
-            this.secondaryScene = new Scene(borderPaneSave);
+            this.secondaryScene = new Scene(this.gridPane = new GridPane(), 300, 100);
+
+            this.gridPane.setHgap(10);
+            this.gridPane.setVgap(12);
+            this.gridPane.add(stageName, 0, 1);
+            this.gridPane.add(confirm, 0, 2);
+            this.secondaryScene.setFill(Color.TRANSPARENT);
             this.secondaryStage = new Stage();
 
-            borderPaneSave.setTop(stageName);
-            borderPaneSave.setBottom(confirm);
+            this.secondaryStage.setFullScreen(false);
+            this.secondaryStage.setResizable(false);
+            this.gridPane.setAlignment(Pos.BASELINE_CENTER);
 
+            this.gridPane.setStyle(
+                    "-fx-background-color: CACFE2;"
+                            + "-fx-background-radius: 8, 4;"
+                            + "-fx-background-insets: 0;");
+
+            this.secondaryStage.setOpacity(0.9);
+            this.secondaryStage.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+                if (! isNowFocused) {
+                    this.secondaryStage.hide();
+                }
+            });
+
+            this.secondaryScene.setFill(Color.TRANSPARENT);
+            this.secondaryStage.initStyle(StageStyle.TRANSPARENT);
             this.secondaryStage.setScene(this.secondaryScene);
-            this.secondaryStage.setX(event.getX());
-            this.secondaryStage.setY(event.getY());
             this.secondaryStage.show();
         });
 
@@ -309,28 +334,46 @@ public class Timetable {
         this.loadTimeTable.setOnMouseEntered(e -> this.loadTimeTable.setStyle(this.HOVERED_BUTTON_STYLE));
         this.loadTimeTable.setOnMouseExited(e -> this.loadTimeTable.setStyle(this.IDLE_BUTTON_STYLE));
         this.loadTimeTable.setOnMouseClicked(event -> {
-            TextField loadFile = new TextField("File name");
-
-            loadFile.setMinSize(90, 30);Button confirm = new Button("confirm");
+            TextField loadTemp = new TextField();
+            loadTemp.setMinSize(90, 30);
+            Button confirm = new Button("confirm");
             confirm.setOnMouseClicked(event1 -> {
-                data.Timetable timetableTemp = this.serializer.deserializeTimeTable(loadFile.getText());
-                if(timetableTemp != null) {
+                data.Timetable timetableTemp = this.serializer.deserializeTimeTable(loadTemp.getText());
+                if (timetableTemp != null) {
                     this.timetable = timetableTemp;
                     this.timetable.updateTimeTableInterface(stageBox);
                 }
+                this.secondaryStage.close();
             });
             confirm.setMinSize(90, 30);
 
-            BorderPane borderPaneSave = new BorderPane();
-            this.secondaryScene = new Scene(borderPaneSave);
+            this.secondaryScene = new Scene(this.gridPane = new GridPane(), 300, 100);
+
+            this.gridPane.setHgap(10);
+            this.gridPane.setVgap(12);
+            this.gridPane.add(loadTemp, 0, 1);
+            this.gridPane.add(confirm, 0, 2);
+            this.secondaryScene.setFill(Color.TRANSPARENT);
             this.secondaryStage = new Stage();
 
-            borderPaneSave.setTop(loadFile);
-            borderPaneSave.setBottom(confirm);
+            this.secondaryStage.setFullScreen(false);
+            this.secondaryStage.setResizable(false);
+            this.gridPane.setAlignment(Pos.BASELINE_CENTER);
 
+            this.gridPane.setStyle(
+                    "-fx-background-color: CACFE2;"
+                            + "-fx-background-radius: 8, 4;"
+                            + "-fx-background-insets: 0;");
+
+            this.secondaryStage.setOpacity(0.9);
+            this.secondaryStage.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+                if (!isNowFocused) {
+                    this.secondaryStage.hide();
+                }
+            });
+            this.secondaryScene.setFill(Color.TRANSPARENT);
+            this.secondaryStage.initStyle(StageStyle.TRANSPARENT);
             this.secondaryStage.setScene(this.secondaryScene);
-            this.secondaryStage.setX(event.getX());
-            this.secondaryStage.setY(event.getY());
             this.secondaryStage.show();
         });
 
