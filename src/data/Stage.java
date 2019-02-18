@@ -1,5 +1,7 @@
 package data;
 
+import gui.pages.timetable.Timeline;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -15,14 +17,20 @@ public class Stage implements Serializable {
         this.performances = new ArrayList<>();
     }
 
-    public Stage(ArrayList<Performance> performances, int maxVisitors) {
+    public Stage() {
        this.maxVisitors = 0;
        this.stageName = "";
        this.performances = new ArrayList<>();
     }
 
-    public void addPerfomance(Performance performance) {
+    public void addPerfomance(Performance performance, Timeline timeLine) {
         this.performances.add(performance);
+    }
+
+    public Stage(ArrayList<Performance> performances, int maxVisitors) {
+       this.maxVisitors = 0;
+       this.stageName = "";
+       this.performances = new ArrayList<>();
     }
 
     public void setMaxVisitors(int maxVisitors) {
