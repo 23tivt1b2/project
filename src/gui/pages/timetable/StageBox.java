@@ -1,22 +1,20 @@
 package gui.pages.timetable;
 
-import gui.pages.timetable.Timeline;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
 import data.Artist;
 import data.Performance;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.time.LocalTime;
@@ -25,11 +23,11 @@ import java.util.ArrayList;
 public class StageBox {
 
     private VBox stageBox;
-    private Timeline timeLine;
+    private TimeLine timeLine;
 
     public void createStageBox(BorderPane borderPane, data.Timetable timetable) {
         this.stageBox = new VBox();
-        this.timeLine = new Timeline(borderPane, timetable);
+        this.timeLine = new TimeLine(borderPane, timetable);
         this.stageBox.setMinWidth(60);
         this.stageBox.setMaxWidth(90);
         borderPane.setLeft(this.stageBox);
@@ -107,14 +105,13 @@ public class StageBox {
             this.timeLine.update(timetable);
             stageOptionMenuStage.close();
         });
-        Button clear = new Button("Clear");
         Button exit = new Button("Exit");
         exit.setOnAction(event -> {
             stageOptionMenuStage.close();
         });
         HBox buttons = new HBox();
         buttons.setSpacing(10);
-        buttons.getChildren().addAll(save, clear, delete, exit);
+        buttons.getChildren().addAll(save, delete, exit);
 
         grid.setHgap(10);
         grid.setVgap(12);
@@ -132,13 +129,18 @@ public class StageBox {
         stageOptionMenuStage.setResizable(false);
         grid.setAlignment(Pos.BASELINE_CENTER);
         grid.setStyle(
-                "-fx-background-color: violet;"
+                "-fx-background-color: CACFE2;"
                         + "-fx-background-radius: 8, 4;"
                         + "-fx-background-insets: 0;");
 
 
         stageOptionMenuStage.setTitle("Add artist");
         stageOptionMenuStage.setOpacity(0.9);
+        stageOptionMenuStage.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+            if (! isNowFocused) {
+                stageOptionMenuStage.hide();
+            }
+        });
 
         sceneOptionMenuScene.setFill(Color.TRANSPARENT);
         stageOptionMenuStage.initStyle(StageStyle.TRANSPARENT);

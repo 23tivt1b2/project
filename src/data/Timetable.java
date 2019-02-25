@@ -17,8 +17,8 @@ public class Timetable implements Serializable {
     }
 
     public void addStage(Stage stage, StageBox stageBox) {
-        this.stages.add(stage);
-        stageBox.update(this);
+            this.stages.add(stage);
+            stageBox.update(this);
     }
 
     public void setStages(ArrayList<Stage> stages) {
@@ -27,6 +27,14 @@ public class Timetable implements Serializable {
 
     public ArrayList<Stage> getStages() {
         return this.stages;
+    }
+
+    public ArrayList<String> getStageNames() {
+        ArrayList<String> names = new ArrayList<>();
+        for (Stage stage : this.stages) {
+            names.add(stage.getStageName());
+        }
+        return names;
     }
 
     public Stage getIndex(int i) {
@@ -39,6 +47,14 @@ public class Timetable implements Serializable {
 
     public ArrayList<Artist> getArtists() {
         return this.artists;
+    }
+
+    public ArrayList<String> getArtistsName() {
+        ArrayList<String> names = new ArrayList<>();
+        for (Artist artist : this.artists) {
+            names.add(artist.getName());
+        }
+        return names;
     }
 
     public int getSize() {

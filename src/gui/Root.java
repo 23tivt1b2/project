@@ -44,7 +44,8 @@ public class Root extends Application {
         menu.addButton("timetable",30);
         menu.getButton(0).setOnAction(event -> {
             try {
-                container.setCenter(timetable.start());
+                timetable.start();
+                //container.setCenter(timetable.start());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -60,7 +61,8 @@ public class Root extends Application {
         menu.addButton("help",27);
         main.getStartbutton().setOnAction(event -> {
             try {
-                container.setCenter(timetable.start());
+                timetable.start();
+                //container.setCenter(timetable.start());
             } catch (Exception e) {
                 e.printStackTrace();
             }
