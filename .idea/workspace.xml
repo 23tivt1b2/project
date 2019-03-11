@@ -2,59 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dafcaeda-1609-460a-b379-833de9fecefb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recources/colorcodes.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recources/fonts/opensans/OpenSans-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recources/fonts/opensans/OpenSans-BoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recources/fonts/opensans/OpenSans-ExtraBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recources/fonts/opensans/OpenSans-ExtraBoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recources/fonts/opensans/OpenSans-Italic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recources/fonts/opensans/OpenSans-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recources/fonts/opensans/OpenSans-LightItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recources/fonts/opensans/OpenSans-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recources/fonts/opensans/OpenSans-SemiBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recources/fonts/opensans/OpenSans-SemiBoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/pages/timetable/PerformanceBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/pages/timetable/menus/AddPerformance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/pages/timetable/menus/Artist.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/pages/timetable/menus/Load.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/pages/timetable/menus/Save.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/pages/timetable/menus/Settings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/pages/timetable/menus/StageAdd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/pages/timetable/menus/StageOptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/project___huts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Nederlands.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/New File.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Save.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Test.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Table1.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/data/Performance.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/fonts/montserrat-thin.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/fonts/montserrat.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/gui/Agenda.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/images/icon.pdn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/images/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recources/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/recources/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Agenda/Agenda.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Artist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Artist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Performance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Performance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Serializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Serializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Stage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Stage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Timetable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Timetable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/Root.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/Root.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/menu/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/menu/MenuBackground.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/menu/Background.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/pages/timetable/StageBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/pages/timetable/StageBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/pages/timetable/TimeBox.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/pages/timetable/TimeLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/pages/timetable/TimeLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/pages/timetable/Timetable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/pages/timetable/Timetable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -118,21 +67,25 @@
     <session id="632354168">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="iml" value="1" />
-          <entry key="java" value="2" />
+          <entry key="java" value="6" />
+          <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="2" />
+          <entry key="JAVA" value="6" />
+          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -142,15 +95,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FestivalPlanner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+            <state relative-caret-position="119">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
               <folding>
                 <element signature="e#146#147#0" expanded="true" />
                 <element signature="e#180#181#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/gui/Root.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="39" column="35" lean-forward="true" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/pages/timetable/Timetable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data/Timetable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="14" lean-forward="true" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -184,7 +173,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/gui/MainMenu.java" />
         <option value="$PROJECT_DIR$/src/gui/timeTable/StageBox.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/gui/pages/timeTable/Timetable.java" />
         <option value="$PROJECT_DIR$/src/gui/Main.java" />
         <option value="$PROJECT_DIR$/src/gui/Rooot.java" />
@@ -222,6 +210,7 @@
         <option value="$PROJECT_DIR$/src/data/Performance.java" />
         <option value="$PROJECT_DIR$/src/gui/pages/timetable/Timetable.java" />
         <option value="$PROJECT_DIR$/src/gui/pages/timetable/menus/Save.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -231,11 +220,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-25" />
-    <option name="y" value="-23" />
-    <option name="width" value="1938" />
-    <option name="height" value="1058" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="20" />
+    <option name="y" value="-28" />
+    <option name="width" value="1939" />
+    <option name="height" value="1059" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -243,65 +232,52 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="huts" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project - huts" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="huts" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project - huts" type="462c0819:PsiDirectoryNode" />
-              <item name="recources" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="huts" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project - huts" type="462c0819:PsiDirectoryNode" />
-              <item name="recources" type="462c0819:PsiDirectoryNode" />
-              <item name="fonts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="huts" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project - huts" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="huts" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project - huts" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="gui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="huts" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project - huts" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552294334114" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552304565124" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\itsar\Google Drive\school\hbo\1.3\project - huts\src\data" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\itsar\Google Drive\school\hbo\1.3\project - huts\src\data" />
       <recent name="C:\Users\itsar\Google Drive\school\hbo\1.3\project - huts\src\gui\pages\timetable" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\itsar\Google Drive\school\hbo\1.3\project - huts\src\data" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -381,8 +357,8 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.71347517" visible="true" weight="0.15973154" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.28652483" side_tool="true" visible="true" weight="0.15973154" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.71024734" visible="true" weight="0.16375838" />
+      <window_info id="Structure" order="1" sideWeight="0.28975266" side_tool="true" visible="true" weight="0.16375838" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -390,7 +366,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.50163937" side_tool="true" weight="0.0037821482" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.19836065" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.19716312" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -400,7 +376,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="TMC Test Results" order="10" />
       <window_info anchor="bottom" id="Boebot Uploader" order="11" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.35032538" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.34893617" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -466,7 +442,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/MainMenu.java" />
     <entry file="file://$PROJECT_DIR$/src/timeTable/Timetable.java" />
-    <entry file="file://$PROJECT_DIR$/src/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/gui/pages/l.java" />
     <entry file="file://$PROJECT_DIR$/src/gui/Node.java" />
     <entry file="file://$PROJECT_DIR$/src/gui/pages/help/Help.java">
@@ -527,13 +502,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/Root.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="29" column="15" lean-forward="true" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/pages/timetable/StageBox.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -559,13 +527,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="120" column="7" selection-start-line="120" selection-start-column="4" selection-end-line="139" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/Timetable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -615,28 +576,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#update#0;class#PerformanceBox#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/pages/timetable/Timetable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
-          <folding>
-            <element signature="method#start#0;class#Timetable#0" />
-            <element signature="method#createTimetable#0;class#Timetable#0" />
-            <element signature="method#createRight#0;class#Timetable#0" />
-            <element signature="method#createAddStage#0;class#Timetable#0" />
-            <element signature="method#createArtistMenu#0;class#Timetable#0" />
-            <element signature="method#createSettings#0;class#Timetable#0" />
-            <element signature="method#createSaveOption#0;class#Timetable#0" />
-            <element signature="method#createLoadOption#0;class#Timetable#0" />
-            <element signature="method#update#0;class#Timetable#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -668,9 +607,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -688,14 +624,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="14" lean-forward="true" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/Timetable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/pages/timetable/Timetable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/FestivalPlanner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+        <state relative-caret-position="119">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
           <folding>
             <element signature="e#146#147#0" expanded="true" />
             <element signature="e#180#181#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/Root.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="39" column="35" lean-forward="true" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
         </state>
       </provider>
     </entry>
