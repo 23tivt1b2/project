@@ -1,7 +1,5 @@
 package data;
 
-import data.Timetable;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;

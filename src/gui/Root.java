@@ -15,12 +15,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Root extends Application {
 
-    private String version = "0.2";
+    private String version = "0.7";
 
     private double x = 0;
     private double y = 0;
@@ -44,8 +45,7 @@ public class Root extends Application {
         menu.addButton("timetable",30);
         menu.getButton(0).setOnAction(event -> {
             try {
-                timetable.start();
-                //container.setCenter(timetable.start());
+                container.setCenter(timetable.start());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -61,35 +61,25 @@ public class Root extends Application {
         menu.addButton("help",27);
         main.getStartbutton().setOnAction(event -> {
             try {
-                timetable.start();
-                //container.setCenter(timetable.start());
+                container.setCenter(timetable.start());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
     }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.getIcons().add(new Image("images/icon.png"));
+
+        Font.loadFont(getClass().getResourceAsStream("/fonts/montserrat-thin.ttf"),10);
+        Font.loadFont(getClass().getResourceAsStream("/fonts/montserrat.ttf"),10);
+        Font.loadFont(getClass().getResourceAsStream("/fonts/opensans/OpenSans-Regular.ttf"),10);
 
         BackgroundFill backgroundFill = new BackgroundFill(OFF_WHITE, CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(backgroundFill);
 
         root.setBackground(background);
 
-        Scene scene = new Scene(root,stageWidth, stageHeight);
-        scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
-        primaryStage.setScene(scene);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-        scene.setOnMousePressed(mouseEvent -> {
-            x = primaryStage.getX() - mouseEvent.getScreenX();
-            y = primaryStage.getY() - mouseEvent.getScreenY();
-        });
-        scene.setOnMouseDragged(mouseEvent -> {
-            primaryStage.setX(mouseEvent.getScreenX() + x);
-            primaryStage.setY(mouseEvent.getScreenY() + y);
-        });
         Button minimize = new Button();
         Line minimizeIcon = new Line();
         minimizeIcon.setStartX(2.5f);
@@ -129,10 +119,12 @@ public class Root extends Application {
         HBox controlButtons = new HBox();
         controlButtons.getChildren().addAll(minimize,maximize,close);
         controlButtons.setAlignment(Pos.TOP_RIGHT);
+        controlButtons.setPadding(new Insets(0,0,1,0));
 
         HBox versionBox = new HBox();
         Label versionLabel = new Label("version "+version);
         versionLabel.getStyleClass().add("version");
+        versionLabel.setMinHeight(30);
         versionBox.setAlignment(Pos.BOTTOM_RIGHT);
         versionLabel.setPadding(new Insets(5,10,0,10));
         versionBox.getChildren().add(versionLabel);
@@ -144,9 +136,8 @@ public class Root extends Application {
         container.setTop(controlButtons);
         container.setBottom(versionBox);
         root.setCenter(container);
-        close.setOnAction((event) -> {
-            primaryStage.close();
-        });
+
+        close.setOnAction(event -> primaryStage.close());
         maximize.setOnAction(event -> {
             if (isFullscreen) {
                 primaryStage.setMaxWidth(stageWidth);
@@ -154,18 +145,32 @@ public class Root extends Application {
                 primaryStage.setMaximized(false);
                 isFullscreen=false;
                 maximize.setGraphic(maximizeIcon);
-                menu.setFullscreen(stageHeight);
+                stageHeight = primaryStage.getHeight();
+                menu.setSize(stageHeight);
             } else {
                 primaryStage.setMaximized(true);
                 isFullscreen=true;
                 maximize.setGraphic(restoreIcon);
                 stageHeight = primaryStage.getHeight();
-                menu.setFullscreen(stageHeight);
+                menu.setSize(stageHeight);
             }
         });
-        minimize.setOnAction((event -> {
-            primaryStage.setIconified(true);
-        }));
+        minimize.setOnAction((event -> primaryStage.setIconified(true)));
+
+        Scene scene = new Scene(root,stageWidth, stageHeight);
+        scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        scene.setOnMousePressed(mouseEvent -> {
+            x = primaryStage.getX() - mouseEvent.getScreenX();
+            y = primaryStage.getY() - mouseEvent.getScreenY();
+        });
+        scene.setOnMouseDragged(mouseEvent -> {
+            if(y<0&&y>-30) {
+                primaryStage.setX(mouseEvent.getScreenX() + x);
+                primaryStage.setY(mouseEvent.getScreenY() + y);
+            }
+        });
         primaryStage.show();
     }
 }

@@ -7,7 +7,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import java.util.Random;
 
-public class MenuBackground {
+public class Background {
 
     private Color LIGHT_FILL_1 = Color.rgb(148,1,135);
     private Color LIGHT_FILL_2 = Color.rgb(148,1,130);
@@ -19,10 +19,9 @@ public class MenuBackground {
     private GridPane background = new GridPane();
     private Random rand = new Random();
 
-    public GridPane menuBackground(double stageHeight) {
-        System.out.println(stageHeight);
+    public GridPane setBackground(double stageHeight, double widthIn30px) {
         for (int row = 0; row < stageHeight/30; row++) {
-            for (int col = 0; col < 8; col++) {
+            for (int col = 0; col < widthIn30px; col++) {
                 int color1 = rand.nextInt(4);
                 int color2 = rand.nextInt(4);
                 int duration = rand.nextInt(5);
@@ -38,6 +37,10 @@ public class MenuBackground {
                 background.getChildren().addAll(rec);
             }
         }
+        background.setMinHeight(stageHeight);
+        return background;
+    }
+    public GridPane getBackground() {
         return background;
     }
 }

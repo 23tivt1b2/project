@@ -1,10 +1,8 @@
 package gui.menu;
 
-import data.Stage;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,7 +17,7 @@ import java.io.FileNotFoundException;
 
 public class Menu {
 
-    private MenuBackground menuBackground = new MenuBackground();
+    private Background menuBackground = new Background();
 
     private StackPane menu = new StackPane();
     private VBox menuButtons = new VBox();
@@ -41,12 +39,12 @@ public class Menu {
         logo.setAlignment(Pos.CENTER);
 
         menuBox.getChildren().addAll(logo,menuButtons);
-        menu.getChildren().addAll(menuBackground.menuBackground(stageHeight),menuBox);
+        menu.getChildren().addAll(menuBackground.setBackground(stageHeight,8),menuBox);
         return menu;
     }
-    public void setFullscreen(double stageHeight){
-        menu.getChildren().remove(menuBackground.menuBackground(stageHeight));
-        menu.getChildren().add(0,menuBackground.menuBackground(stageHeight));
+    public void setSize(double stageHeight){
+        menu.getChildren().remove(menuBackground.getBackground());
+        menu.getChildren().add(0,menuBackground.setBackground(stageHeight,8));
     }
     public void addButton(String name, int padding) {
         Button button = new Button(name);

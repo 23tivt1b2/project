@@ -1,63 +1,49 @@
 package gui.pages.timetable;
 
-import java.awt.*;
-import javafx.scene.Node.*;
-
-import com.sun.prism.paint.Color;
-import data.Performance;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Paint.*;
+import javafx.scene.layout.HBox;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class TimeLine {
+public class Timeline {
 
-    private HBox timeLine;
+    private HBox timeline;
+    private data.Timetable timetableData;
 
-    private ArrayList<Integer> performaces;
+    private ArrayList<LocalTime> timeList;
 
-    private GridPane timeLines;
-
-
-    TimeLine(BorderPane borderPane, data.Timetable timetable) {
-        this.timeLines = new GridPane();
-        borderPane.setCenter(this.timeLines);
-
-        update(timetable);
+    public HBox createTimeline(data.Timetable timetableData) {
+        this.timeline = new HBox();
+        this.timeList = new ArrayList<>();
+        this.timeline.setMaxSize(60, 30);
+        update(timetableData);
+        return this.timeline;
     }
-
     public void update(data.Timetable timetable) {
-        int counter = 1;
-        Scrollbar scrollbar = new Scrollbar();
-        this.timeLines.getChildren().clear();
-        for (data.Stage stage : timetable.getStages()) {
-            HBox temporary = new HBox();
-            for (int i = 1; i < 25; i++) {
-                Label beauty = new Label();
-                beauty.setStyle("-fx-background-color: #D7D4E5; "
-                                + "-fx-border-color: white");
-                beauty.setOpacity(1);
-                beauty.setMinSize(60, 30);
-                beauty.setMaxSize(60, 30);
-                for(Performance performance : stage.getPerformances()) {
-                    if (performance.getBeginTime().getHour() <= i && performance.getEndTime().getHour() > i) {
-                        beauty.setStyle("-fx-background-color: #475069; "
-                        + "-fx-text-fill: white");
-                    }
-                    if (performance.getBeginTime().getHour() == i) {
-                        beauty.setText(performance.getArtist().getName());
-                    }
-                }
-                temporary.getChildren().add(beauty);
+        this.timetableData = timetable;
+        this.timeline.getChildren().clear();
+        this.timeList.clear();
 
-            }
-            this.timeLines.add(temporary, 0, counter);
-            counter++;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+
+        LocalDateTime endTime = LocalDateTime.of(LocalDate.now(),this.timetableData.getEndTime());
+        if(endTime.toLocalTime().isAfter(LocalTime.of(0,0))&& Duration.between(this.timetableData.getBeginTime(),this.timetableData.getEndTime()).toHours()<this.timetableData.getDuration().toHours()) {
+            endTime=endTime.plusDays(1);
         }
+        for (LocalDateTime time = LocalDateTime.of(LocalDate.now(),this.timetableData.getBeginTime()); time.isBefore(endTime); time=time.plusMinutes(30)) {
+            Label timeText = new Label();
+            timeText.setText(dtf.format(time));
+            timeText.getStyleClass().add("box");
+            timeText.getStyleClass().add("timeline");
+            timeText.setMinSize(120, 30);
+            this.timeList.add(time.toLocalTime());
+            this.timeline.getChildren().add(timeText);
+        }
+        this.timetableData.setTimeList(this.timeList);
     }
-
 }

@@ -2,7 +2,6 @@ package data;
 
 import java.io.Serializable;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class Performance implements Serializable {
 
@@ -23,7 +22,7 @@ public class Performance implements Serializable {
     }
 
     public void setArtist(Artist name) {
-       this.artist = name;
+        this.artist = name;
     }
 
     public Artist getArtist() {

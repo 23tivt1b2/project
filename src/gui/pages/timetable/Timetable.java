@@ -1,390 +1,194 @@
 package gui.pages.timetable;
 
-import data.Serializer;
+import gui.pages.timetable.menus.*;
+import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Timetable {
 
-    private data.Timetable timetable;
-
-    private BorderPane primaryBorderPane;
-    private BorderPane secondaryBorderPane;
-    private BorderPane thirdBorderPane;
-
-    private GridPane gridPane;
-
-    private Stage primaryStage;
-    private Stage secondaryStage;
-
-    private Scene primaryScene;
-    private Scene secondaryScene;
-
-    private Button addArtist;
-    private Button addStage;
-    private Button saveTimeTable;
-    private Button loadTimeTable;
-
-    private StageBox stageBox;
-    private TimeBox timeBox;
-
-    private HBox top;
-
-    private Serializer serializer;
-
-    private final String IDLE_BUTTON_STYLE = "-fx-border-color: #8E9FBB;" +
-            " -fx-border-width: 3px;"
-            + "-fx-background-color: #8E9FBB";
-    private final String HOVERED_BUTTON_STYLE = "-fx-background-color: transparent;";
-
-
-    public void start() throws Exception {
-
-        this.stageBox = new StageBox();
-        this.timeBox = new TimeBox();
-
-        this.timetable = new data.Timetable();
-        this.serializer = new Serializer();
-
-        createPrimaryBorderPane();
-
-        this.primaryStage = new Stage();
-        this.secondaryStage = new Stage();
-
-        this.primaryScene = new Scene(this.primaryBorderPane);
-        this.primaryStage.setScene(this.primaryScene);
-
-        this.primaryStage.show();
-    }
-
-    public void createPrimaryBorderPane() {
-        this.primaryBorderPane = new BorderPane();
-        this.primaryBorderPane.autosize();
-        this.primaryBorderPane.setPrefSize(1700, 700);
-
-        this.top = new HBox();
-
-        createArtistSelector();
-        createAddStage();
-        createsecondaryBorderPane();
-        createSaveOption();
-        loadSave();
-    }
-
-    public void createsecondaryBorderPane() {
-        this.secondaryBorderPane = new BorderPane();
-        this.primaryBorderPane.setCenter(this.secondaryBorderPane);
-
-        this.stageBox.createStageBox(this.secondaryBorderPane, this.timetable);
-        this.timeBox.createTimeBox(this.secondaryBorderPane);
-    }
-
-    public void createArtistSelector() {
-        this.addArtist = new Button("add artist");
-        this.addArtist.setStyle(this.IDLE_BUTTON_STYLE);
-        this.addArtist.setOnMouseEntered(e -> this.addArtist.setStyle(this.HOVERED_BUTTON_STYLE));
-        this.addArtist.setOnMouseExited(e -> this.addArtist .setStyle(this.IDLE_BUTTON_STYLE));
-        this.addArtist.setOnMouseClicked(event -> {
-
-            Label nameArtist = new Label("Name: ");
-            nameArtist.setTextFill(Color.BLACK);
-            TextField setArtist = new TextField();
-
-
-            Label popularityArtist = new Label("Popularity: ");
-            popularityArtist.setTextFill(Color.BLACK);
-            TextField setPopularity = new TextField();
-
-            Button save = new Button("Save");
-            save.setStyle("-fx-background-color: white");
-            save.setOnAction(event1 -> {
-                if (!this.timetable.getArtistsName().contains(setArtist.getText())) {
-                    data.Artist temporary = new data.Artist(setArtist.getText(), Integer.valueOf(setPopularity.getText()));
-                    this.timetable.addArtist(temporary);
-                    this.secondaryStage.close();
-                    print();
-                } else {
-                    setArtist.clear();
-                    setArtist.setPromptText("//artist already exists");
-                }
-            });
-            Button clear = new Button("Clear");
-            clear.setStyle("-fx-background-color: white");
-            clear.setOnAction(event1 -> {
-                setArtist.clear();
-                setPopularity.clear();
-            });
-            Button exit = new Button("Exit");
-            exit.setStyle("-fx-background-color: white");
-            exit.setOnAction(event1 -> {
-               this.secondaryStage.close();
-            });
-
-            HBox buttons = new HBox();
-            buttons.setSpacing(10);
-            buttons.getChildren().addAll(save, clear, exit);
-
-            this.secondaryScene = new Scene(this.gridPane = new GridPane(), 300, 130);
-            this.secondaryStage.setOpacity(0.9);
-
-            this.secondaryScene.setFill(Color.TRANSPARENT);
-            this.secondaryStage = new Stage();
-
-
-            this.gridPane.setHgap(10);
-            this.gridPane.setVgap(12);
-            this.gridPane.add(nameArtist, 0, 1);
-            this.gridPane.add(setArtist, 1, 1);
-            this.gridPane.add(popularityArtist, 0, 2);
-            this.gridPane.add(setPopularity, 1, 2);
-            this.gridPane.add(buttons, 0 ,3, 3, 1);
-
-            this.secondaryStage.setFullScreen(false);
-            this.secondaryStage.setResizable(false);
-            this.gridPane.setAlignment(Pos.BASELINE_CENTER);
-
-            this.gridPane.setStyle(
-                    "-fx-background-color: CACFE2;"
-                    + "-fx-background-radius: 8, 4;"
-                    + "-fx-background-insets: 0;");
-
-            this.secondaryStage.setOpacity(0.9);
-            this.secondaryStage.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
-                if (! isNowFocused) {
-                    this.secondaryStage.hide();
-                }
-            });
-
-            this.secondaryScene.setFill(Color.TRANSPARENT);
-            this.secondaryStage.initStyle(StageStyle.TRANSPARENT);
-            this.secondaryStage.setScene(this.secondaryScene);
-            this.secondaryStage.show();
-
-        });
-
-
-        this.addArtist.setMinSize(125, 60);
-        this.addArtist.setMaxSize(125, 60);
-        this.top.getChildren().add(this.addArtist);
-        this.primaryBorderPane.setTop(this.top);
-    }
-
-    public void createAddStage() {
-        this.addStage = new Button("add stage");
-        this.addStage.setStyle(IDLE_BUTTON_STYLE);
-        this.addStage.setOnMouseEntered(e -> this.addStage.setStyle(this.HOVERED_BUTTON_STYLE));
-        this.addStage.setOnMouseExited(e -> this.addStage.setStyle(this.IDLE_BUTTON_STYLE));
-        this.addStage.setOnMouseClicked(event -> {
-
-            Label nameArtist = new Label("Name: ");
-            nameArtist.setTextFill(Color.BLACK);
-            TextField setStage = new TextField();
-
-            Label popularityArtist = new Label("Capacity: ");
-            popularityArtist.setTextFill(Color.BLACK);
-            TextField setCapacity = new TextField();
-
-            Button save = new Button("Save");
-            save.setStyle("-fx-background-color: white");
-            save.setOnAction(event1 -> {
-                if (!this.timetable.getStageNames().contains(setStage.getText())) {
-                    data.Stage temporary = new data.Stage(Integer.valueOf(setCapacity.getText()), setStage.getText());
-                    this.timetable.addStage(temporary, this.stageBox);
-                    this.secondaryStage.close();
-                    print();
-                } else {
-                    setStage.clear();
-                    setStage.setPromptText("//Stage already exists");
-                }
-            });
-            Button clear = new Button("Clear");
-            clear.setStyle("-fx-background-color: white");
-            clear.setOnAction(event1 -> {
-                setStage.clear();
-                setCapacity.clear();
-            });
-            Button exit = new Button("Exit");
-            exit.setStyle("-fx-background-color: white");
-            exit.setOnAction(event1 -> {
-                this.secondaryStage.close();
-            });
-
-            HBox buttons = new HBox();
-            buttons.setSpacing(10);
-            buttons.getChildren().addAll(save, clear, exit);
-
-            this.secondaryScene = new Scene(this.gridPane = new GridPane(), 300, 130);
-            this.secondaryStage.setOpacity(0.9);
-
-            this.secondaryScene.setFill(Color.TRANSPARENT);
-            this.secondaryStage = new Stage();
-
-
-            this.gridPane.setHgap(10);
-            this.gridPane.setVgap(12);
-            this.gridPane.add(nameArtist, 0, 1);
-            this.gridPane.add(setStage, 1, 1);
-            this.gridPane.add(popularityArtist, 0, 2);
-            this.gridPane.add(setCapacity, 1, 2);
-            this.gridPane.add(buttons, 0 ,3, 3, 1);
-
-            this.secondaryStage.setFullScreen(false);
-            this.secondaryStage.setResizable(false);
-            this.gridPane.setAlignment(Pos.BASELINE_CENTER);
-
-            this.gridPane.setStyle(
-                    "-fx-background-color: CACFE2;"
-                            + "-fx-background-radius: 8, 4;"
-                            + "-fx-background-insets: 0;");
-
-            this.secondaryStage.setOpacity(0.9);
-            this.secondaryStage.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
-                if (! isNowFocused) {
-                    this.secondaryStage.hide();
-                }
-            });
-
-            this.secondaryScene.setFill(Color.TRANSPARENT);
-            this.secondaryStage.initStyle(StageStyle.TRANSPARENT);
-            this.secondaryStage.setScene(this.secondaryScene);
-            this.secondaryStage.show();
-
-        });
-        this.addStage.setMinSize(125, 60);
-        this.addStage.setMaxSize(125, 60);
-        this.top.getChildren().add(this.addStage);
-        this.primaryBorderPane.setTop(this.top);
-    }
-
-    public void createSaveOption() {
-        this.saveTimeTable = new Button("Save TimeTable");
-        this.saveTimeTable.setStyle(IDLE_BUTTON_STYLE);
-        this.saveTimeTable.setOnMouseEntered(e -> this.saveTimeTable.setStyle(this.HOVERED_BUTTON_STYLE));
-        this.saveTimeTable.setOnMouseExited(e -> this.saveTimeTable.setStyle(this.IDLE_BUTTON_STYLE));
-        this.saveTimeTable.setOnMouseClicked(event -> {
-
-            TextField stageName = new TextField();
-            stageName.clear();
-            stageName.setPromptText("//Name time table");
-            stageName.setMinSize(90, 30);
-            Button confirm = new Button("confirm");
-            confirm.setOnMouseClicked(event1 -> {
-                if (stageName.getText().length() > 0) {
-                    serializer.setTimeTable(this.timetable);
-                    serializer.serializeTimeTable(stageName.getText());
-                    this.secondaryStage.close();
-                } else {
-                    stageName.setPromptText("//name necessary");
-                }
-            });
-            confirm.setMinSize(90, 30);
-
-            this.secondaryScene = new Scene(this.gridPane = new GridPane(), 300, 100);
-
-            this.gridPane.setHgap(10);
-            this.gridPane.setVgap(12);
-            this.gridPane.add(stageName, 0, 1);
-            this.gridPane.add(confirm, 0, 2);
-            this.secondaryScene.setFill(Color.TRANSPARENT);
-            this.secondaryStage = new Stage();
-
-            this.secondaryStage.setFullScreen(false);
-            this.secondaryStage.setResizable(false);
-            this.gridPane.setAlignment(Pos.BASELINE_CENTER);
-
-            this.gridPane.setStyle(
-                    "-fx-background-color: CACFE2;"
-                            + "-fx-background-radius: 8, 4;"
-                            + "-fx-background-insets: 0;");
-
-            this.secondaryStage.setOpacity(0.9);
-            this.secondaryStage.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
-                if (! isNowFocused) {
-                    this.secondaryStage.hide();
-                }
-            });
-
-            this.secondaryScene.setFill(Color.TRANSPARENT);
-            this.secondaryStage.initStyle(StageStyle.TRANSPARENT);
-            this.secondaryStage.setScene(this.secondaryScene);
-            this.secondaryStage.show();
-        });
-
-        this.saveTimeTable.setMinSize(125, 60);
-        this.saveTimeTable.setMaxSize(125, 60);
-        this.top.getChildren().add(this.saveTimeTable);
-    }
-
-    public void loadSave() {
-        this.loadTimeTable = new Button("Load file");
-        this.loadTimeTable.setStyle(IDLE_BUTTON_STYLE);
-        this.loadTimeTable.setOnMouseEntered(e -> this.loadTimeTable.setStyle(this.HOVERED_BUTTON_STYLE));
-        this.loadTimeTable.setOnMouseExited(e -> this.loadTimeTable.setStyle(this.IDLE_BUTTON_STYLE));
-        this.loadTimeTable.setOnMouseClicked(event -> {
-            TextField loadTemp = new TextField();
-            loadTemp.setMinSize(90, 30);
-            Button confirm = new Button("confirm");
-            confirm.setOnMouseClicked(event1 -> {
-                data.Timetable timetableTemp = this.serializer.deserializeTimeTable(loadTemp.getText());
-                if (timetableTemp != null) {
-                    this.timetable = timetableTemp;
-                    this.timetable.updateTimeTableInterface(stageBox);
-                }
-                this.secondaryStage.close();
-            });
-            confirm.setMinSize(90, 30);
-
-            this.secondaryScene = new Scene(this.gridPane = new GridPane(), 300, 100);
-
-            this.gridPane.setHgap(10);
-            this.gridPane.setVgap(12);
-            this.gridPane.add(loadTemp, 0, 1);
-            this.gridPane.add(confirm, 0, 2);
-            this.secondaryScene.setFill(Color.TRANSPARENT);
-            this.secondaryStage = new Stage();
-
-            this.secondaryStage.setFullScreen(false);
-            this.secondaryStage.setResizable(false);
-            this.gridPane.setAlignment(Pos.BASELINE_CENTER);
-
-            this.gridPane.setStyle(
-                    "-fx-background-color: CACFE2;"
-                            + "-fx-background-radius: 8, 4;"
-                            + "-fx-background-insets: 0;");
-
-            this.secondaryStage.setOpacity(0.9);
-            this.secondaryStage.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
-                if (!isNowFocused) {
-                    this.secondaryStage.hide();
-                }
-            });
-            this.secondaryScene.setFill(Color.TRANSPARENT);
-            this.secondaryStage.initStyle(StageStyle.TRANSPARENT);
-            this.secondaryStage.setScene(this.secondaryScene);
-            this.secondaryStage.show();
-        });
-
-        this.loadTimeTable.setMinSize(125, 60);
-        this.loadTimeTable.setMaxSize(125, 60);
-        this.top.getChildren().add(this.loadTimeTable);
-    }
-
-    public void print() {
-        System.out.println(this.timetable.getArtists());
-        System.out.println(this.timetable.getStages());
-        for (data.Stage stage : this.timetable.getStages()) {
-            System.out.println(stage.getPerformances());
+    private data.Timetable timetableData = new data.Timetable();
+    private BorderPane timetableContent;
+    private Timeline timeline = new Timeline();
+    private PerformanceBox performanceBox = new PerformanceBox();
+    private StageBox stageBox = new StageBox();
+
+    private Boolean created = false;
+
+    private HBox buttons;
+
+    public Node start() throws Exception {
+        this.timetableContent = new BorderPane();
+        if (this.created) {
+            createTimetable();
+        } else {
+            this.timetableContent.setCenter(createSetup());
         }
+        return this.timetableContent;
     }
+    public Node createSetup() {
+        FlowPane center = new FlowPane();
+        VBox content = new VBox();
 
+        Text title = new Text("set up your timetable");
+        title.getStyleClass().add("setup-text");
+
+        Label nameTimetable = new Label("name: ");
+        nameTimetable.setAlignment(Pos.CENTER_RIGHT);
+        nameTimetable.getStyleClass().addAll("box","timeline");
+        nameTimetable.setMinSize(72,30);
+        TextField setName = new TextField();
+        setName.getStyleClass().addAll("box","timeline");
+        setName.setMinSize(150,30);
+
+        Label timeText = new Label("time span: ");
+        timeText.getStyleClass().addAll("box","timeline");
+        timeText.setMinSize(72,30);
+        timeText.setAlignment(Pos.CENTER_RIGHT);
+
+        ArrayList<String> timeList = new ArrayList<>();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+        for (LocalTime time : this.timetableData.getFullTimeList()) {
+            timeList.add(time.format(dtf));
+        }
+
+        ComboBox<String> beginTime = new ComboBox<>();
+        beginTime.getStyleClass().addAll("box","timeline");
+        beginTime.setMinSize(83,30);
+        ComboBox<String> endTime = new ComboBox<>();
+        endTime.getStyleClass().addAll("box","timeline");
+        endTime.setMinSize(83,30);
+
+
+        beginTime.setItems(FXCollections.observableList(timeList));
+        beginTime.getSelectionModel().select(timeList.indexOf("12:00"));
+        endTime.setItems(FXCollections.observableList(timeList));
+        endTime.getSelectionModel().select(timeList.indexOf("02:00"));
+        HBox comboBox = new HBox();
+        comboBox.getChildren().addAll(beginTime, endTime);
+
+        Button create = new Button("create");
+        create.getStyleClass().add("option-button");
+        create.setOnAction(event1 -> {
+            this.timetableData.setName(setName.getText());
+            this.timetableData.setTime(LocalTime.parse(beginTime.getValue()),LocalTime.parse(endTime.getValue()));
+            this.created = true;
+            try {
+                this.timetableContent.setCenter(start());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        Button load = new Button("load");
+        load.getStyleClass().add("option-button");
+        load.setOnAction(event1 -> {
+            new Load().start(this);
+        });
+
+        HBox buttons = new HBox();
+        buttons.getChildren().addAll(create);
+
+        GridPane gridPane = new GridPane();
+        gridPane.add(nameTimetable, 0, 1);
+        gridPane.add(setName, 1, 1);
+        gridPane.add(timeText, 0, 2);
+        gridPane.add(comboBox, 1, 2);
+        gridPane.add(buttons, 0 ,3, 3, 1);
+        gridPane.setAlignment(Pos.BOTTOM_LEFT);
+        gridPane.setPadding(new Insets(5,0,0,0));
+
+        content.getChildren().addAll(title,gridPane);
+        content.getStyleClass().add("table-box");
+        center.getChildren().add(content);
+        center.setAlignment(Pos.TOP_LEFT);
+        center.setPadding(new Insets(46,0,0,30));
+        return center;
+    }
+    public void createTimetable(){
+        this.buttons = new HBox();
+        createAddStage();
+        createArtistMenu();
+        createSaveOption();
+        createLoadOption();
+        BorderPane content = new BorderPane();
+        content.setTop(buttons);
+        content.setCenter(createRight());
+        this.timetableContent.setCenter(content);
+        this.timetableContent.setLeft(stageBox.createStageBox(this.timetableData,createSettings(),this.performanceBox));
+        this.timetableContent.setPadding(new Insets(0,3,0,3));
+    }
+    public Node createRight() {
+        ScrollPane scroll = new ScrollPane();
+        FlowPane scrollContent = new FlowPane(Orientation.VERTICAL);
+        scrollContent.getChildren().addAll(this.timeline.createTimeline(this.timetableData),this.performanceBox.createPerformanceBox(this.timetableData));
+        scroll.setContent(scrollContent);
+        scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scroll.setPannable(true);
+        return scroll;
+    }
+    public void createAddStage() {
+        Button stages = new Button("add stage");
+        stages.getStyleClass().add("option-button");
+        stages.setPrefSize(120,30);
+        this.buttons.getChildren().add(stages);
+        stages.setOnMouseClicked(event -> {
+            new StageAdd().start(this.timetableData,this.stageBox,this.performanceBox);
+        });
+    }
+    public void createArtistMenu() {
+        Button addArtist = new Button("artists");
+        addArtist.getStyleClass().add("option-button");
+        addArtist.setPrefSize(120,30);
+        this.buttons.getChildren().add(addArtist);
+        addArtist.setOnMouseClicked(event -> {
+            new Artist().start(this.timetableData,this.performanceBox);
+        });
+    }
+    public Node createSettings() {
+        Button setTime = new Button("settings");
+        setTime.getStyleClass().add("option-button");
+        setTime.setPrefSize(155,30);
+        setTime.setOnMouseClicked(event -> {
+            new Settings().start(this.timetableData,this.stageBox,this.performanceBox,this.timeline);
+        });
+        return setTime;
+    }
+    public void createSaveOption() {
+        Button saveTimeTable = new Button("save");
+        saveTimeTable.getStyleClass().add("option-button");
+        saveTimeTable.setPrefSize(120,30);
+        this.buttons.getChildren().add(saveTimeTable);
+        saveTimeTable.setOnMouseClicked(event -> {
+            new Save().start(this.timetableData);
+        });
+    }
+    public void createLoadOption() {
+        Button loadTimeTable = new Button("load");
+        loadTimeTable.getStyleClass().add("option-button");
+        loadTimeTable.setPrefSize(120,30);
+        this.buttons.getChildren().add(loadTimeTable);
+        loadTimeTable.setOnMouseClicked(event -> {
+            new Load().start(this);
+        });
+    }
+    public void update(data.Timetable timetableData) {
+        this.timetableData = timetableData;
+        System.out.println(this.timetableData.getName());
+        this.performanceBox.update(this.timetableData);
+        this.timeline.update(this.timetableData);
+        this.stageBox.update(this.timetableData);
+    }
+    public void setCreated(Boolean created) {
+        this.created = created;
+    }
 }
