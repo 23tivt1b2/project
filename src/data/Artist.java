@@ -1,11 +1,13 @@
 package data;
 
-public class Artist {
+import java.io.Serializable;
 
-    private double popularity;
+public class Artist implements Serializable {
+
+    private int popularity;
     private String name;
 
-    public Artist(String name, double popularity) {
+    public Artist(String name, int popularity) {
         this.name = name;
         this.popularity = popularity;
     }
@@ -22,7 +24,13 @@ public class Artist {
         return name;
     }
 
-    public double getPopularity() {
+    public int getPopularity() {
         return popularity;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
+

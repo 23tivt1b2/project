@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="project - huts" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="FestivalPlanner" />
+    <module name="project - huts" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
