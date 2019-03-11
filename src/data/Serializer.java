@@ -1,4 +1,4 @@
-import data.Timetable;
+package data;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
